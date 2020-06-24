@@ -28,6 +28,11 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
 
+	<!-- 섬머노트 -->
+    <link rel="stylesheet" href="<%= request.getContextPath()%>/resources/css/summernote/summernote-lite.css" />
+    <script src="<%= request.getContextPath()%>/resources/js/summernote/summernote-lite.js"></script>
+    <script src="<%= request.getContextPath()%>/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    
 </head>
 <body>
 	<!--::header part start::-->

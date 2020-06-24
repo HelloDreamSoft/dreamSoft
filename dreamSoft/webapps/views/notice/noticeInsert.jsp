@@ -8,74 +8,89 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="breadcrumb_iner">
-					<h2>공지사항</h2>
+					<h2>공지사항 등록</h2>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 <!-- breadcrumb part end-->
-<!--================공지사항 Area =================-->
+<!--================공지사항 등록 Area =================-->
 <section class="cart_area section_padding">
 	<div class="container">
-		<!-- 공지사항 출력 Area -->
-		<div class="row">
-			<div class="col-md-8"></div>
-            <div class="col-md-4">
-                <div class="product_sidebar">
-                    <div class="single_sedebar">
-                        <div class="select_option">
-                            <div class="select_option_list">
-                            	10개씩 보기 
-                            	<i class="right fas fa-caret-down"></i> 
-                            </div>
-                            <div class="select_option_dropdown">
-                                <p><a href="#">25개씩 보기 </a></p>
-                                <p><a href="#">50개씩 보기 </a></p>
-                                <p><a href="#">100개씩 보기</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 공지사항 출력 Area End -->
 		<div class="cart_inner">
 			<div class="table-responsive">
 				<table class="table">
-					<thead>
+					<!-- <thead>
 						<tr>
 							<th scope="col">글번호</th>
 							<th scope="col">제목</th>
 							<th scope="col">작성일</th>
-							<!-- <th scope="col">Total</th> -->
 						</tr>
-					</thead>
+					</thead> -->
 					<tbody>
-						<% for(int i = 1; i < 11; i++){ %>
 						<tr>
 							<td>
-								<h5><%=i %></h5>
+								<h5>제목</h5>
 							</td>
-							<td>
-								<h5>제목입니다.</h5>
+							<td colspan="3">
+								<input type="text" placeholder="제목을 입력하세요." size="100%"/>
 							</td>
-							<td>
-								<h5>작성일</h5>
-							</td>
-							
 						</tr>
-						<% } %>
+						<tr>
+							<td>내용</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<textarea class="summernote" id="summernote" cols="100%" rows="10"></textarea>
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<div class="checkout_btn_inner float-right">
-					<a class="btn_1" href="<%=request.getContextPath()%>/views/notice/noticeInsert.jsp">등록하기</a> 
-					<a class="btn_1 checkout_btn_1" href="#">메인으로 돌아가기</a>
+					<a class="btn_1" href="#">등록하기</a> 
+					<a class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">취소하기</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<!-- <script>
+	//여기 아래 부분
+	$('#summernote').summernote({
+		  height : 600 // 에디터 높이
+		, minHeight : null // 최소 높이
+		, maxHeight : null // 최대 높이
+		, focus : true // 에디터 로딩후 포커스를 맞출지 여부
+		, lang : "ko-KR" // 한글 설정
+		, placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
+		/* , toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['style']],
+            ['font', ['strikethrough', 'bold', 'underline', 'clear']],
+            ['Font Style', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['height', ['height']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+         ] */
+		
+	});
+	/* $("div.note-editable").on('drop',function(e){
+        for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+        	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$(".summernote")[0]);
+        }
+       e.preventDefault();
+	}); */
+	
+	
+</script> -->
 <!--================End Cart Area =================-->
 <!--================Start Paging Area =================-->
 <section class="blog_area section_padding">
@@ -129,6 +144,7 @@
      </div>
  </section>
 <!--================End Paging Area =================-->
+
 
 
 <%@ include file="../common/footer.jsp"%>
