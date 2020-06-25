@@ -18,6 +18,7 @@
 <!--================공지사항 Area =================-->
 <section class="cart_area section_padding">
 	<div class="container">
+	
 		<!-- 공지사항 출력 Area -->
 		<div class="row">
 			<div class="col-md-8"></div>
@@ -39,7 +40,8 @@
                 </div>
             </div>
         </div>
-        <!-- 공지사항 출력 Area End -->
+       <!-- 공지사항 출력 Area End -->
+       
 		<div class="cart_inner">
 			<div class="table-responsive">
 				<table class="table">
@@ -52,6 +54,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						
 						<% for(int i = 1; i < 11; i++){ %>
 						<tr>
 							<td>
@@ -70,7 +73,7 @@
 				</table>
 				<div class="checkout_btn_inner float-right">
 					<a class="btn_1" href="<%=request.getContextPath()%>/views/notice/noticeInsert.jsp">등록하기</a> 
-					<a class="btn_1 checkout_btn_1" href="#">메인으로 돌아가기</a>
+					<a class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/index.jsp">메인으로 돌아가기</a>
 				</div>
 			</div>
 		</div>
@@ -112,8 +115,8 @@
                              <div class="form-group">
                                  <div class="input-group mb-3">
                                      <input type="text" class="form-control" placeholder='Search Keyword'
-                                         onfocus="this.placeholder = ''"
-                                         onblur="this.placeholder = 'Search Keyword'">
+                                        	onfocus="this.placeholder = ''"
+                                         	onblur="this.placeholder = 'Search Keyword'">
                                      <div class="input-group-append">
                                          <button class="btn" type="button"><i class="ti-search"></i></button>
                                      </div>

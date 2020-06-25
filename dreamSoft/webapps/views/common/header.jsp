@@ -29,9 +29,10 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
 
 	<!-- 섬머노트 -->
-    <link rel="stylesheet" href="<%= request.getContextPath()%>/resources/css/summernote/summernote-lite.css" />
-    <script src="<%= request.getContextPath()%>/resources/js/summernote/summernote-lite.js"></script>
-    <script src="<%= request.getContextPath()%>/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    
     
 </head>
 <body>
