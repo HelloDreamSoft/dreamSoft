@@ -56,12 +56,12 @@
 					<tbody>
 						
 						<% for(int i = 1; i < 11; i++){ %>
-						<tr>
+						<tr onclick="goNoticeView();">
 							<td>
 								<h5><%=i %></h5>
 							</td>
 							<td>
-								<h5>제목입니다.</h5>
+								<h5><a href="<%=request.getContextPath()%>/views/notice/noticeView.jsp">제목입니다.</a></h5>
 							</td>
 							<td>
 								<h5>작성일</h5>
@@ -80,6 +80,7 @@
 	</div>
 </section>
 <!--================End Cart Area =================-->
+
 <!--================Start Paging Area =================-->
 <section class="blog_area section_padding">
      <div class="container">
@@ -133,5 +134,9 @@
  </section>
 <!--================End Paging Area =================-->
 
-
+<script>
+	function goNoticeView(){
+		window.href = "<%=request.getContextPath()%>/views/notice/noticeView.jsp";
+	}
+</script>
 <%@ include file="../common/footer.jsp"%>
