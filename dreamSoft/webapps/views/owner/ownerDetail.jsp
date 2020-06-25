@@ -20,35 +20,38 @@
 <br />
 <br />
 <br />
+
+
 <div class="whole-wrap">
 	<div class="container box_1170">
-		<div class="row">
-			<div class="col-lg-12 col-md-12" style = "padding-left:400px; padding-right:400px;">
-				<h3 class="mb-30">마이 페이지 상세보기</h3>
-				<form action="#">
+		<div class="section-top-border">
+			<div class="row">
+				<div class="col-lg-7 col-md-7" style = "padding-left : 100px; padding-right : 100px;">
+					<h3 class="mb-30">마이 페이지 상세보기(사업자)</h3>
+					<form action="#">
 					<div class="mt-10">
 					<!-- 이름/전화번호/이메일/생일 -->
-						<input type="text" name="mName" placeholder="이름"
+						<input type="text" name="oName" placeholder="이름"
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = '이름'" required
 							class="single-input-primary">
 					</div>
 					<div class="mt-10">
-						<input type="text" name="mPhone" placeholder="핸드폰 번호"
+						<input type="text" name="oPhone" placeholder="핸드폰 번호"
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = '핸드폰 번호'" required
 							class="single-input-primary">
 					</div>
 					<div class="mt-10">
-						<input type="email" name="mEmail" placeholder="이메일"
+						<input type="email" name="oEmail" placeholder="이메일"
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = '이메일'" required
 							class="single-input-primary">
 					</div>
 					<div class="mt-10">
-						<input type="text" name="mBirth" placeholder="생일"
+						<input type="text" name="oRegno" placeholder="사업자번호"
 							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '생일'" required
+							onblur="this.placeholder = '사업자번호'" required
 							class="single-input-primary">
 					</div>
 					
@@ -56,15 +59,25 @@
 						<button class="genric-btn primary circle arrow">메인으로</button>
 					</div>
 					<div class="mt-10 float-right">
-						<button class="genric-btn info circle">수정하기</button>
+						<button class="genric-btn info circle">수정요청하기</button>
+						<!-- 인포윈도우 띄워서 관리자에게 수정요청하겠습니까? yes일경우 관리자 페이지에 수정요청이 들어왔음을 표시하는건? -->
 					</div>
 				</form>
+				</div>
+				<div class="col-lg-4 col-md-5 mt-sm-30">
+				
+					<div class="single-element-widget">
+						<h3 class="mb-30">사업자 등록증 이미지</h3>
+							<a href="<%= request.getContextPath() %>/resources/img/b3.jpg" class="img-pop-up img-gal">
+								<div class="single-gallery-image"
+								style="background: url(<%= request.getContextPath() %>/resources/img/b3.jpg);"></div>
+							</a>
+					</div>
+				</div>
 			</div>
-			
 		</div>
 	</div>
 </div>
-
 
 
 
