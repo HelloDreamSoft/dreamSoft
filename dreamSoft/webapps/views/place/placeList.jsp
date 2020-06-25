@@ -195,19 +195,5 @@
 	</div>
 </section>
 <!-- product list part end-->
-<!--================Cart Area =================-->
-<section class="cart_area section_padding">
-	<div class="container">
-		<div class="cart_inner">
-			<div class="table-responsive">
-				<div class="checkout_btn_inner float-right">
-					<a class="btn_1" href="<%=request.getContextPath()%>/views/place/placeList.jsp">등록하기</a> <a
-						class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/views/place/placeList.jsp">목록으로 가기</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--================End Cart Area =================-->
 
 <%@ include file="../common/footer.jsp"%>
