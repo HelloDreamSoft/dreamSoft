@@ -32,6 +32,12 @@
     <!-- 지도 부르기 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037f9ae8baf28354df2203507cf3111a"></script>
 
+	<!-- 섬머노트 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    
+    
 </head>
 <body>
 	<!--::header part start::-->
@@ -89,7 +95,7 @@
                                         blog
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.html"> blog</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp"> 공지사항</a>
                                         <a class="dropdown-item" href="single-blog.html">Single blog</a>
                                     </div>
                                 </li>
