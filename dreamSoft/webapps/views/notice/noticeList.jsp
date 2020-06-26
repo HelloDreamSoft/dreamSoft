@@ -136,7 +136,7 @@
 
 <script>
 	function goNoticeView(){
-		window.href = "<%=request.getContextPath()%>/views/notice/noticeView.jsp";
+		location.href = "<%=request.getContextPath()%>/views/notice/noticeView.jsp";
 	}
 </script>
 <%@ include file="../common/footer.jsp"%>
