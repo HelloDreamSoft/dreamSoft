@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
+    
+    
+    <!-- 지도 부르기 -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037f9ae8baf28354df2203507cf3111a"></script>
 
 	<!-- 섬머노트 -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -122,3 +126,6 @@
         </div>
     </header>
     <!-- Header part end-->
+    
+    
+    
