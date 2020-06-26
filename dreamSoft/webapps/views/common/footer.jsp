@@ -10,15 +10,14 @@
                     <div class="col-lg-8">
                         <div class="footer_menu">
                             <div class="footer_logo">
-                                <a href="index.html"><img src="<%= request.getContextPath() %>/resources/img/logo.png" alt="#"></a>
+                                <a href="<%= request.getContextPath() %>/index.jsp"><img src="<%= request.getContextPath() %>/resources/img/logo.png" alt="#"></a>
                             </div>
                             <div class="footer_menu_item">
-                                <a href="index.html">Home</a>
-                                <a href="about.html">About</a>
-                                <a href="product_list.html">Products</a>
-                                <a href="#">Pages</a>
-                                <a href="blog.html">Blog</a>
-                                <a href="contact.html">Contact</a>
+                                <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
+                                <a href="<%=request.getContextPath()%>/views/place/placeList.jsp">PLACE</a>
+                                <a href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">공지사항</a>
+                                <a href="<%=request.getContextPath()%>/views/member/memberJoin.jsp">회원가입</a>
+                                <a href="<%= request.getContextPath() %>/views/admin/adminOwnerCheck.jsp">관리자</a>
                             </div>
                         </div>
                     </div>

@@ -50,7 +50,7 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="<%= request.getContextPath() %>/resources/img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="<%= request.getContextPath() %>/index.jsp"> <img src="<%= request.getContextPath() %>/resources/img/logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -60,52 +60,35 @@
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html">about</a>
+                                    <a class="nav-link" href="<%= request.getContextPath() %>/index.jsp">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<%=request.getContextPath()%>/views/place/placeList.jsp">PLACE</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html"> 
-                                            login
-                                            
-                                        </a>
-                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">elements</a>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">공지사항</a>
                                 </li>
-                                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<%= request.getContextPath() %>/views/admin/adminOwnerCheck.jsp">관리자</a>
+                                </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        blog
+                                        	회원관리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp"> 공지사항</a>
-                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
+                                    	<a class="dropdown-item" href="<%=request.getContextPath()%>/views/modal.jsp">로그인</a>
+                                    	<a class="dropdown-item" href="<%=request.getContextPath()%>/views/member/memberDetail.jsp">일반회원 정보 수정</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/views/owner/ownerDetail.jsp">사업자 정보 수정</a>
                                     </div>
                                 </li>
-                                
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/views/member/memberJoin.jsp">회원가입</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex align-items-center">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href="cart.html">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
                         </div>
                     </nav>
                 </div>
