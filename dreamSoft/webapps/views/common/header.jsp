@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
+    
+    
+    <!-- 지도 부르기 -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037f9ae8baf28354df2203507cf3111a"></script>
 
 </head>
 <body>
@@ -116,3 +120,6 @@
         </div>
     </header>
     <!-- Header part end-->
+    
+    
+    
