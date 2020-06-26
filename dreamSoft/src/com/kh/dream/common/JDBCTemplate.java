@@ -23,7 +23,7 @@ public static Connection getConnection() {
 			
 			con = DriverManager.getConnection(
 					"jdbc:oracle:thin:@localhost:1521:xe",
-					"LOC", "LOC");
+					"DREAMSOFT", "DREAMSOFT");
 			
 			
 			// 2. JNDI 방식
