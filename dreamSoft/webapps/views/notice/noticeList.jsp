@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.kh.dream.notice.model.vo.*, java.util.*"%>
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
+%>
 
 <%@ include file="../common/header.jsp"%>
 <!-- breadcrumb part start-->
@@ -27,17 +31,17 @@
 					<div class="single_sedebar">
 						<div class="select_option">
 							<div class="select_option_list">
-								10개씩 보기 <i class="right fas fa-caret-down"></i>
+								페이지 <i class="right fas fa-caret-down"></i>
 							</div>
 							<div class="select_option_dropdown">
 								<p>
-									<a href="#">25개씩 보기 </a>
+									<a href="#" id="limit10">10개씩 보기 </a>
 								</p>
 								<p>
-									<a href="#">50개씩 보기 </a>
+									<a href="#" id="limit25">25개씩 보기 </a>
 								</p>
 								<p>
-									<a href="#">100개씩 보기</a>
+									<a href="#" id="limit50">50개씩 보기</a>
 								</p>
 							</div>
 						</div>
@@ -61,22 +65,20 @@
 					<tbody>
 
 						<%
-							for (int i = 1; i < 11; i++) {
+							for (Notice n : list) {
 						%>
 						<tr onclick="goNoticeView();">
 							<td>
-								<h5><%=i%></h5>
+								<h5><%=n.getnNo()%></h5>
 							</td>
 							<td>
 								<h5>
-									<a
-										href="<%=request.getContextPath()%>/views/notice/noticeView.jsp">제목입니다.</a>
+									<a><%=n.getnTitle()%></a>
 								</h5>
 							</td>
 							<td>
-								<h5>작성일</h5>
+								<h5><%=n.getnDate()%></h5>
 							</td>
-
 						</tr>
 						<%
 							}
@@ -124,8 +126,9 @@
 									</div>
 								</div>
 							</div>
-							<button class="button rounded-0 primary-bg text-white w-100 btn_1"
-									type="submit">Search</button>
+							<button
+								class="button rounded-0 primary-bg text-white w-100 btn_1"
+								type="submit">Search</button>
 						</form>
 					</aside>
 				</div>
@@ -138,9 +141,15 @@
 
 
 <script>
-	function goNoticeView(){
-		location.href = "<%=request.getContextPath()%>
-	/views/notice/noticeView.jsp";
-	}
+	$(function(){
+		$(".table td").mouseenter(function(){
+			$(this).parent().css({"background":"lightpink", "cursor":"pointer"});
+		}).mouseout(function(){
+			$(this).parent().css({"background":"none"});
+		}).click(function(){
+			var nno = $(this).parent().children().eq(0).text();
+			location.href="<%=request.getContextPath()%>/selectOne.no?nno="+nno;
+		});
+	});
 </script>
 <%@ include file="../common/footer.jsp"%>

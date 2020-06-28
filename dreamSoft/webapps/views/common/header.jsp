@@ -66,7 +66,7 @@
                                     <a class="nav-link" href="<%=request.getContextPath()%>/views/place/placeList.jsp">PLACE</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">공지사항</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/nList.no">공지사항</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<%= request.getContextPath() %>/views/admin/adminOwnerCheck.jsp">관리자</a>
