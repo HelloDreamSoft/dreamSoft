@@ -15,6 +15,7 @@
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = 'ID'" required
 							class="single-input">
+						
 					</div>
 					<div class="mt-10">
 						<input type="text" name="pw" placeholder="비밀번호"
@@ -52,15 +53,16 @@
 							onblur="this.placeholder = '주민번호'" required
 							class="single-input">
 					</div>
-					
+					<br>
 				
 					<br>
 					<div class="mt-10">
-						<button class="genric-btn primary circle float-left ">취소 </button>
+						<button class="genric-btn primary circle float-left" onclick="location.href='<%=request.getContextPath()%>/views/joinChoose.jsp'">취소 </button>
 						<button class="genric-btn primary circle float-right">회원 가입 </button>
 					</div>
 				</form>
 			</div>
+			
 			
 		</div>
 	</div>

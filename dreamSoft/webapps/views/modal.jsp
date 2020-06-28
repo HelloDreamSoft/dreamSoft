@@ -52,6 +52,6 @@
  	
 </div>
  
-<p><a href="#ex1" rel="modal:open">모달창띄우기</a></p>
+<!--  <p><a href="#ex1" rel="modal:open">모달창띄우기</a></p>-->
 </body>
 </html>

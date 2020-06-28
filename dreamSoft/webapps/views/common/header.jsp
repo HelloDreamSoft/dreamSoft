@@ -83,7 +83,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/views/member/memberJoin.jsp">회원가입</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/views/joinChoose.jsp">회원가입</a>
                                 </li>
                             </ul>
                         </div>
