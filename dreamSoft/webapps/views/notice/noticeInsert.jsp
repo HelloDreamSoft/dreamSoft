@@ -40,8 +40,8 @@
 					</table>
 				</form>
 				<div class="checkout_btn_inner float-right">
-					<a class="btn_1" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">등록완료</a> 
-					<a class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">취소하기</a>
+					<a class="btn_1" href="<%=request.getContextPath()%>/nInsert.no">등록완료</a> 
+					<a class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/nList.no">취소하기</a>
 				</div>
 			</div>
 		</div>
