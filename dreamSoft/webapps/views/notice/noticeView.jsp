@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.dream.notice.model.vo.*" %>
+<%
+	Notice n = (Notice)request.getAttribute("notice");
+%>
 
 <%@ include file="../common/header.jsp"%>
 <!-- breadcrumb part start-->
@@ -25,15 +29,15 @@
 						<tbody>
 							<tr>
 								<td>
-									<h5 style="text-align: center">제목</h5>
+									<h5 style="text-align: center"><%=n.getnNo() %></h5>
 								</td>
 								<td colspan="3">
-									<h5>제목입니다.</h5>
+									<h5><%=n.getnTitle() %></h5>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="4">
-									<h5>내용입니다.</h5>
+									<h5><%=n.getnContent() %></h5>
 								</td>
 							</tr>
 						</tbody>
@@ -41,7 +45,7 @@
 				</form>
 				<div class="checkout_btn_inner float-right">
 					<a class="btn_1" href="<%=request.getContextPath()%>/views/notice/noticeUpdate.jsp">수정하기</a> 
-					<a class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">메뉴로 돌아가기</a>
+					<a class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/nList.no">메뉴로 돌아가기</a>
 				</div>
 			</div>
 		</div>
