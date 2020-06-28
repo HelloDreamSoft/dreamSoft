@@ -3,6 +3,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	.modal{
+	text-align : center;
+	position :relative;
+	width : 300px;
+	heigth:150px;
+	z-index:1;
+	}
+	.moal-content{
+	width : 300px;
+	text-align : center;
+	background: white;
+	margin :100px auto;
+
+	}
+	.button1{
+	color: #fff;
+    background: #B08EAD;
+    border: 1px solid transparent
+    }
+    .link{
+    	color :#B08EAD ;
+    	text-decoration:none;
+    }
+    .modal-layout{
+    posiotion:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0, 0, 0,0.5);
+    z-index:-1;
+    }
+</style>
 <meta charset="UTF-8">
 <title>DreamSoft</title>
 <!-- Required meta tags -->
@@ -77,7 +111,7 @@
                                         	회원관리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    	<a class="dropdown-item" href="<%=request.getContextPath()%>/views/modal.jsp">로그인</a>
+                                    	<a class="dropdown-item" id="login" >로그인</a>
                                     	<a class="dropdown-item" href="<%=request.getContextPath()%>/views/member/memberDetail.jsp">일반회원 정보 수정</a>
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/views/owner/ownerDetail.jsp">사업자 정보 수정</a>
                                     </div>
@@ -105,6 +139,58 @@
         </div>
     </header>
     <!-- Header part end-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+
+<body>
+<div id="ex1" class="modal">
+	<div class = "modal-content">
+	<div><br></div>
+ 	<div class="login">
+ 	<input type="text" name="id" placeholder="id" />
+ 	</div>
+ 	<br>
+ 	
+ 	<div class="login">
+ 	<input type="text" name="pw" placeholder="비밀번호" />
+ 	</div>
+ 	<br>
+ 	
+ 	<div>
+ 	<input type="radio" value="일반회원"/>일반회원 &nbsp; &nbsp;
+ 	<input type="radio" value="사업자회원" />사업자회원
+ 	</div>
+ 	<br>
+ 	
+ 	<div>
+ 	<button class="button1"> 로그인</button>  &nbsp; &nbsp;
+ 	<button class="button1" onclick="goBack()"> 취소하기</button>
+ 	</div>
+ 	<br>
+ 	<div>
+ 		<a href="#" class="link" >아이디 찾기</a> &nbsp; <a href="#" class="link">비밀번호 찾기</a>
+ 	</div>
+ 	</div>
+ 	<div class="modal-layout" ></div>
+</div>
+<script>
+	<!-- 취소시 모달창만 꺼지게 하는기능-->
+	function goBack(){
+		window.history.go();
+	}
+	$(function(){
+		$("#login").click(function(){
+			$('.modal').modal();
+		});
+	});
+	$(function(){
+		$(".modal-layout").click(function(){
+			$('.modal').modal('hide');
+		});
+	});
+
+</script>
     
     
     
