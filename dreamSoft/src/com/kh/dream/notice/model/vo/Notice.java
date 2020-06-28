@@ -3,10 +3,10 @@ package com.kh.dream.notice.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Notice implements Serializable {
+public class Notice implements Serializable{
 
-	private static final long serialVersionUID = 123000L;
-
+	private static final long serialVersionUID = 3241L;
+	                       
 	private int nNo;
 	private String nTitle;
 	private String nContent;
@@ -14,7 +14,6 @@ public class Notice implements Serializable {
 	
 	public Notice() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Notice(int nNo, String nTitle, String nContent, Date nDate) {
@@ -24,7 +23,7 @@ public class Notice implements Serializable {
 		this.nContent = nContent;
 		this.nDate = nDate;
 	}
-
+	
 	public Notice(String nTitle, String nContent) {
 		super();
 		this.nTitle = nTitle;
@@ -67,7 +66,6 @@ public class Notice implements Serializable {
 	public String toString() {
 		return "Notice [nNo=" + nNo + ", nTitle=" + nTitle + ", nContent=" + nContent + ", nDate=" + nDate + "]";
 	}
-	
-	
-	
+
+
 }
