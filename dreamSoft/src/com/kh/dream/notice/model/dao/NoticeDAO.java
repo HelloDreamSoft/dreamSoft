@@ -170,4 +170,29 @@ public class NoticeDAO {
 		return result;
 	}
 
+	public int deleteNotice(Connection con, int nno) throws NoticeException {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteNotice");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, nno);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			throw new NoticeException("DAO에러 : " + e.getMessage());
+			
+		}
+		
+		
+		return result;
+	}
+
 }

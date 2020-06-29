@@ -59,7 +59,22 @@ public class NoticeService {
 		if(result > 0) commit(con);
 		else rollback(con);
 		
+		close(con);
+		
 		return result;
+	}
+
+	public int deleteNotice(int nno) throws NoticeException {
+		
+		con = getConnection();
+		
+		int result = nDAO.deleteNotice(con, nno);
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result; 
 	}
 
 }
