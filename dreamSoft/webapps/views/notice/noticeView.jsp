@@ -31,9 +31,10 @@
 								<td>
 									<h5 style="text-align: center"><%=n.getnNo() %></h5>
 								</td>
-								<td colspan="3">
+								<td colspan="2">
 									<h5><%=n.getnTitle() %></h5>
 								</td>
+								<td style="text-align: center;"><%=n.getnDate() %></td>
 							</tr>
 							<tr>
 								<td colspan="4">
@@ -44,7 +45,8 @@
 					</table>
 				</form>
 				<div class="checkout_btn_inner float-right">
-					<a class="btn_1" href="<%=request.getContextPath()%>/views/notice/noticeUpdate.jsp">수정하기</a> 
+					<% %><!-- 관리자일때만 출력하기 -->
+					<a class="btn_1" onclick="goUpdate()">수정하기</a>
 					<a class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/nList.no">메뉴로 돌아가기</a>
 				</div>
 			</div>
@@ -53,6 +55,12 @@
 </section>
 <!--================ End 공지사항 상세화면 Area =================-->
 
+<script>
+	function goUpdate(){
+		alert("수정 페이지로 이동합니다.");
+		location.href="<%=request.getContextPath()%>/nUpdateView.no?nno=<%= n.getnNo()%>";
+	}
+</script>
 
 
 <%@ include file="../common/footer.jsp"%>

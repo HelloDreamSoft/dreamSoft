@@ -50,4 +50,16 @@ public class NoticeService {
 		return result;
 	}
 
+	public int updateNotice(Notice n) throws NoticeException {
+		
+		con = getConnection();
+		int result = nDAO.updateNotice(con, n);
+		
+		System.out.println("서비스입니다."+result);
+		if(result > 0) commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+
 }

@@ -29,6 +29,13 @@ public class Notice implements Serializable{
 		this.nTitle = nTitle;
 		this.nContent = nContent;
 	}
+	
+	public Notice(int nNo, String nTitle, String nContent) {
+		super();
+		this.nNo = nNo;
+		this.nTitle = nTitle;
+		this.nContent = nContent;
+	}
 
 	public int getnNo() {
 		return nNo;

@@ -143,4 +143,31 @@ public class NoticeDAO {
 		return result;
 	}
 
+	public int updateNotice(Connection con, Notice n) throws NoticeException {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNotice");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, n.getnTitle());
+			pstmt.setString(2, n.getnContent());
+			pstmt.setInt(3, n.getnNo());
+			
+			result = pstmt.executeUpdate();
+			System.out.println("result 나와요? : " + result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new NoticeException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

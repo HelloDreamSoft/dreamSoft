@@ -30,6 +30,7 @@
 								<td colspan="3">
 									<input type="text" name="nTitle" placeholder="제목을 입력하세요." style="width: 100%; height: 50px"/>
 								</td>
+								<td style="text-align: center;">　</td>
 							</tr>
 							<tr>
 								<td colspan="4">
