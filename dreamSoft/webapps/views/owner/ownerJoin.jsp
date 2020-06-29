@@ -71,7 +71,7 @@
 	
 					<br>
 					<div class="mt-10">
-						<button class="genric-btn primary circle float-left" onclick="location href='<%=request.getContextPath()%>/views/joinChoose.jsp'">취소 </button>
+						<button class="genric-btn primary circle float-left" onclick="location.href='<%=request.getContextPath()%>/views/joinChoose.jsp'">취소 </button>
 						<button class="genric-btn primary circle float-right">회원 가입 </button>
 					</div>
 				</form>

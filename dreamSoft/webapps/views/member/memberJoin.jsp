@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12" style = "padding-left:400px; padding-right:400px;">
 				<h3 class="mb-30">회원 가입</h3>
-				<form action="#" id="userInfo" name = "userInfo">
+				<form action="/dream/mJoin.me" id="userInfo" name = "userInfo" method="post">
 					<div class="mt-10">
 						<input type="text" name="id" placeholder="ID"
 							onfocus="this.placeholder = ''"
@@ -29,7 +29,7 @@
 					<div class="mt-10">
 						<input type="password" name="pwck" placeholder="비밀번호 확인"
 							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '비밀번호 확인'" required
+							onblur="this.placeholder = '비밀번호 확인'" 
 							class="single-input">
 					</div>
 					<div class="mt-10">
@@ -51,7 +51,7 @@
 							class="single-input">
 					</div>
 					<div class="mt-10">
-						<input type="text" name="idnum" placeholder="주민번호"
+						<input type="text" name="birth" placeholder="주민번호"
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = '주민번호'" required
 							class="single-input">
@@ -87,14 +87,14 @@ $(document).ready(function(){
 			id:{minlenght:3, remote:"Validate"},
 			pwck:{equalTo:"#pw"},
 			phone:{digits:true, minlength:10, maxlength:11},
-			idnum:{digits:true minlength:7, maxlength:13 }
+			idnum:{digits:true, minlength:7, maxlength:13 }
 		},
 		messages:{
 			id:{minlength : jQuery.format("아이디는 3자이상 입력해주세요."),
 				remote : jQuery.format("입력하신 {0}은 이미 존재하는 아이디입니다.")},
 			pwck:{equalTo:"비밀번호가 일치하지 않습니다."},
 			phone:{digits:"숫자가 아닙니다.", minlength:"전화번호가 올바르지 않습니다.", maxlength :"전화번호가 올바르지 않습니다."},
-			idnum:{digits:"숫자가 아닙니다.", minlegnth:"주민번호가 올바르지 않습니다.", maxlength:"주민번호가 올바르지않습니다."}
+			birth:{digits:"숫자가 아닙니다.", minlegnth:"주민번호가 올바르지 않습니다.", maxlength:"주민번호가 올바르지않습니다."}
 		},
 		submitHandler:function(frm){
 			frm.submit();
