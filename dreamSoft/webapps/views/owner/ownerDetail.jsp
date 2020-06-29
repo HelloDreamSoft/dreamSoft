@@ -33,7 +33,7 @@
 					<!-- 이름/전화번호/이메일/생일 -->
 						<input type="text" name="oName" placeholder="이름"
 							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '이름'" required
+							onblur="this.placeholder = '이름'" readonly
 							class="single-input-primary">
 					</div>
 					<div class="mt-10">
@@ -51,7 +51,7 @@
 					<div class="mt-10">
 						<input type="text" name="oRegno" placeholder="사업자번호"
 							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '사업자번호'" required
+							onblur="this.placeholder = '사업자번호'" readonly
 							class="single-input-primary">
 					</div>
 

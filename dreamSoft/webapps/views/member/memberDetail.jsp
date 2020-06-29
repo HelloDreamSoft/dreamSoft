@@ -30,7 +30,7 @@
 					<!-- 이름/전화번호/이메일/생일 -->
 						<input type="text" name="mName" placeholder="이름"
 							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '이름'" required
+							onblur="this.placeholder = '이름'" readonly
 							class="single-input-primary">
 					</div>
 					<div class="mt-10">
