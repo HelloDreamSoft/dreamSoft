@@ -54,7 +54,19 @@
 							onblur="this.placeholder = '사업자번호'" required
 							class="single-input-primary">
 					</div>
-					
+
+					<div class="mt-10">
+						<input type="text" name="oPwd" placeholder="비밀번호"
+							onfocus="this.placeholder = ''"
+							onblur="this.placeholder = '비밀번호'" required class="single-input">
+					</div>
+					<div class="mt-10">
+						<input type="text" name="oPwck" placeholder="비밀번호 확인"
+							onfocus="this.placeholder = ''"
+							onblur="this.placeholder = '비밀번호 확인'" required
+							class="single-input">
+					</div>
+
 					<div class="mt-10 float-left">
 						<button class="genric-btn primary circle arrow">메인으로</button>
 					</div>

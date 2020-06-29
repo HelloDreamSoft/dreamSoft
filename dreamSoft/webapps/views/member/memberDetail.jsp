@@ -51,13 +51,26 @@
 							onblur="this.placeholder = '생일'" required
 							class="single-input-primary">
 					</div>
-					
+					<div class="mt-10">
+						<input type="text" name="mPwd" placeholder="비밀번호"
+							onfocus="this.placeholder = ''"
+							onblur="this.placeholder = '비밀번호'" required class="single-input">
+					</div>
+					<div class="mt-10">
+						<input type="text" name="mPwck" placeholder="비밀번호 확인"
+							onfocus="this.placeholder = ''"
+							onblur="this.placeholder = '비밀번호 확인'" required
+							class="single-input">
+					</div>
+
 					<div class="mt-10 float-left">
 						<button class="genric-btn primary circle arrow">메인으로</button>
 					</div>
 					<div class="mt-10 float-right">
 						<button class="genric-btn info circle">수정하기</button>
 					</div>
+					
+					
 				</form>
 			</div>
 			
