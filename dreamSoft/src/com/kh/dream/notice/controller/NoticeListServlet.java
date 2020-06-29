@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.dream.common.NoticeException;
+import com.kh.dream.notice.exception.NoticeException;
 import com.kh.dream.notice.model.service.NoticeService;
 import com.kh.dream.notice.model.vo.Notice;
 

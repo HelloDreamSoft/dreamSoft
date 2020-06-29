@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.kh.dream.common.NoticeException;
+import com.kh.dream.notice.exception.NoticeException;
 import com.kh.dream.notice.model.vo.Notice;
 
 import static com.kh.dream.common.JDBCTemplate.*;
@@ -126,10 +126,12 @@ public class NoticeDAO {
 			
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, "NTITLE");
-			pstmt.setString(2, "NCONTENT");
+			pstmt.setString(1, n.getnTitle());
+			pstmt.setString(2, n.getnContent());
 			
 			result = pstmt.executeUpdate();
+			
+			System.out.println("다오입니다 : " + result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

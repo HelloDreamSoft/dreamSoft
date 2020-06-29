@@ -1,4 +1,4 @@
-package com.kh.dream.common;
+package com.kh.dream.notice.exception;
 
 public class NoticeException extends Exception {
 

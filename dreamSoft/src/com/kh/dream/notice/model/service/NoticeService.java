@@ -4,7 +4,7 @@ import java.net.ConnectException;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.kh.dream.common.NoticeException;
+import com.kh.dream.notice.exception.NoticeException;
 import com.kh.dream.notice.model.dao.NoticeDAO;
 import com.kh.dream.notice.model.vo.Notice;
 
@@ -40,8 +40,12 @@ public class NoticeService {
 		con = getConnection();
 		int result = nDAO.insertNotice(con, n);
 		
+		System.out.println("서비스입니다 : " + result);
+		
 		if(result > 0) commit(con);
 		else rollback(con);
+		
+		close(con);
 		
 		return result;
 	}
