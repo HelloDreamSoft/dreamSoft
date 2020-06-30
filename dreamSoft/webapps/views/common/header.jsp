@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "com.kh.dream.member.model.vo.*"%>
+ <% Member m = (Member)session.getAttribute("member");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,9 +117,12 @@
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/views/owner/ownerDetail.jsp">사업자 정보 수정</a>
                                     </div>
                                 </li>
+                               <% if (m != null) {%><%} else { %>
+                              
                                 <li class="nav-item">
                                     <a class="nav-link" href="<%=request.getContextPath()%>/views/joinChoose.jsp">회원가입</a>
                                 </li>
+                                <%} %>
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex align-items-center">
@@ -153,7 +157,7 @@
  	<br>
  	
  	<div class="login">
- 	<input type="text" name="pw" placeholder="비밀번호" />
+ 	<input type="password" name="pw" placeholder="비밀번호" />
  	</div>
  	<br>
  	
@@ -164,7 +168,7 @@
  	<br>
  	
  	<div>
- 	<button class="button1"> 로그인</button>  &nbsp; &nbsp;
+ 	<button class="button1" onclick ="login()"> 로그인</button>  &nbsp; &nbsp;
  	<button class="button1" onclick="goBack()"> 취소하기</button>
  	</div>
  	<br>
@@ -189,6 +193,9 @@
 			$('.modal').modal('hide');
 		});
 	});
+	function login(){
+		location.href="/dream/mLogin.me";
+	}
 
 </script>
     

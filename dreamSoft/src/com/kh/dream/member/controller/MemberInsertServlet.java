@@ -43,8 +43,8 @@ public class MemberInsertServlet extends HttpServlet {
 		
 		int result = new MemberService().insertMember(m);
 		
-		if(result>0) {response.sendRedirect("/index.jsp");}
-		else { request.setAttribute("error-msg", "멤버 등록 실");}
+		if(result>0) {response.sendRedirect("/dream/index.jsp");}
+		else { request.setAttribute("error-msg", "멤버 등록 실패");}
 		
 		
 	}

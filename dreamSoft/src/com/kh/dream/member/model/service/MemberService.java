@@ -20,4 +20,11 @@ public class MemberService {
 		return result;
 	}
 
+	public Member selectMember(Member m) {
+		con = getConnection();
+		Member result = mDAO.selectMember(con, m);
+		close(con);
+		return result;
+	}
+
 }

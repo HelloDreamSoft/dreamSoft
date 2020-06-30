@@ -81,7 +81,7 @@
 	$.ajax({})
 </script> -->
 <script>
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$('#userInfo').validate(){
 		rules:{
 			id:{minlenght:3, remote:"Validate"},
@@ -100,7 +100,7 @@ $(document).ready(function(){
 			frm.submit();
 		}success: function(e){}
 	});
-});
+}); */
 </script>
 
 <%@ include file="../common/footer.jsp" %> 

@@ -18,7 +18,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 	public String getParameter(String name) {
 		// 사용자가 입력한 값을 받아오는 메소드
 		                                               // 바뀐 암호값 받아오는 코드
-		if(name != null && (name.equals("userPwd") || name.equals("re_userPwd"))) {
+		if(name != null && (name.equals("pw") || name.equals("re_userPwd"))) {
 			// 암호화 코드 실행
 			return getSHA512(super.getParameter(name));
 		} else {
