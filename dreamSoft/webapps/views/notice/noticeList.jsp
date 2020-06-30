@@ -3,6 +3,14 @@
 <%@page import="com.kh.dream.notice.model.vo.*, java.util.*"%>
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	
 %>
 
 <%@ include file="../common/header.jsp"%>
@@ -97,16 +105,46 @@
 		<div class="col-lg-12 mb-5 mb-lg-0">
 			<div class="blog_left_sidebar">
 				<nav class="blog-pagination justify-content-center d-flex">
-					<ul class="pagination">
-						<li class="page-item"><a href="#" class="page-link"
-							aria-label="Previous"> <i class="ti-angle-left"></i>
-						</a></li>
-						<li class="page-item"><a href="#" class="page-link">1</a></li>
-						<li class="page-item active"><a href="#" class="page-link">2</a>
+					<ul class="pagination" id="paging">
+						<li class="page-item">
+							<% if(currentPage <= 1) { %>
+							<a onclick="nothing();" id="nothing" class="page-link" aria-label="Previous">
+								<i class="ti-angle-left"></i>
+							</a>
+							<% } else { %>
+							<a onclick="goPrevious();" id="goPrevious"  class="page-link" aria-label="Previous">
+								<i class="ti-angle-left"></i>
+							</a>
+							<% } %>
 						</li>
-						<li class="page-item"><a href="#" class="page-link"
-							aria-label="Next"> <i class="ti-angle-right"></i>
-						</a></li>
+						
+						<% 
+							for(int i = startPage; i <= endPage; i++) {
+								if(i == currentPage){
+						%>
+						<li class="page-item">
+							<a onclick="nothing();" class="page-link"><%=i %></a>
+						</li>
+						<%      } else { %>
+						<li class="page-item">
+							<a onclick="goPage();" class="page-link"><%=i %></a>
+						</li>
+						<% 		}
+							}
+						%>
+						<% if(currentPage >= maxPage) { %>
+						<li class="page-item">
+							<a onclick="nothing();" class="page-link" aria-label="Next">
+								<i class="ti-angle-right"></i>
+							</a>
+						</li>
+						<% } else { %>
+						<li class="page-item">
+							<a onclick="goNextPage();" class="page-link" aria-label="Next">
+								<i class="ti-angle-right"></i>
+							</a>
+						</li>
+						<% } %>
 					</ul>
 				</nav>
 			</div>

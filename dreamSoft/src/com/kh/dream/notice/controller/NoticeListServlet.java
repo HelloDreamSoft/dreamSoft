@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.dream.notice.exception.NoticeException;
 import com.kh.dream.notice.model.service.NoticeService;
 import com.kh.dream.notice.model.vo.Notice;
+import com.kh.dream.notice.model.vo.PageInfo;
 
 /**
  * Servlet implementation class NoticeListServlet
@@ -46,15 +47,42 @@ public class NoticeListServlet extends HttpServlet {
 		
 		limit = 10;
 		
+		if(request.getParameter("currentPage") != null) {
+			currentPage  = Integer.parseInt(request.getParameter("currentPage"));
+		}
 		try {
+			int listCount = ns.getListCount();
+			
+			maxPage = (int)((double)listCount/limit + 0.9);
+			
+			startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
+			
+			endPage = startPage + limit - 1;
+			
+			if( endPage > maxPage) {
+				endPage = maxPage;
+			}
+			
+			// ------------- 페이지 처리는 끝
+			
+			list = ns.selectList(currentPage, limit);
+			
+			
+			System.out.println("총 게시글 수 : " + listCount);
+			
 			list = ns.noticeList();
+			
+			PageInfo pi = new PageInfo(currentPage, listCount, limit, 
+	                   				   maxPage, startPage, endPage);
+			
 			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
+			
 			request.getRequestDispatcher("views/notice/noticeList.jsp")
 				   .forward(request, response);
 			
 		} catch(NoticeException e) {
 			
-			System.out.println("공지사항 작성 실패!");
 			request.getRequestDispatcher("views/common/errorPage.jsp")
 				   .forward(request, response);
 			

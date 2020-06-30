@@ -195,4 +195,97 @@ public class NoticeDAO {
 		return result;
 	}
 
+	public int getListCount(Connection con) throws NoticeException {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getListCount");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new NoticeException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+				
+		
+		return result;
+	}
+
+	public ArrayList<Notice> selectList(Connection con, int currentPage, int limit) throws NoticeException {
+		
+		ArrayList<Notice> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Notice>();
+			
+			while(rset.next()) {
+				Notice n = new Notice();
+				
+				n.setnNo(rset.getInt("NNO"));
+				n.setnTitle(rset.getString("NTITLE"));
+				n.setnContent(rset.getString("NCONTENT"));
+				n.setnDate(rset.getDate("NDATE"));
+				
+				list.add(n);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new NoticeException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

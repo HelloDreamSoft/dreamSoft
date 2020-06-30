@@ -77,4 +77,26 @@ public class NoticeService {
 		return result; 
 	}
 
+	public int getListCount() throws NoticeException {
+		
+		con = getConnection();
+		
+		int result = nDAO.getListCount(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public ArrayList<Notice> selectList(int currentPage, int limit) throws NoticeException {
+		
+		con = getConnection();
+		
+		ArrayList<Notice> list = nDAO.selectList(con, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+	}
+
 }
