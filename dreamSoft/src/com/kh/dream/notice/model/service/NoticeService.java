@@ -77,23 +77,33 @@ public class NoticeService {
 		return result; 
 	}
 
-	public int getListCount() throws NoticeException {
+	public int getListCount(String keyword){
 		
 		con = getConnection();
 		
-		int result = nDAO.getListCount(con);
+		int result = 0;
+		if(keyword != null && (keyword.length() > 0 && !keyword.contentEquals("null"))){
+			result = nDAO.getSearchListCount(con, keyword);
+		} else {
+			result = nDAO.getListCount(con);
+		}
 		
 		close(con);
 		
 		return result;
 	}
 
-	public ArrayList<Notice> selectList(int currentPage, int limit) throws NoticeException {
+	public ArrayList<Notice> noticeSelectList(String keyword, int currentPage, int limit) throws NoticeException {
 		
 		con = getConnection();
 		
-		ArrayList<Notice> list = nDAO.selectList(con, currentPage, limit);
+		ArrayList<Notice> list = null;
 		
+		if(keyword != null && (keyword.length() > 0 && !keyword.contentEquals("null"))){
+			list = nDAO.searchList(con, keyword, currentPage, limit);	
+		} else {
+			list = nDAO.selectList(con, currentPage, limit);
+		}
 		close(con);
 		
 		return list;

@@ -195,7 +195,39 @@ public class NoticeDAO {
 		return result;
 	}
 
-	public int getListCount(Connection con) throws NoticeException {
+	public int getSearchListCount(Connection con, String keyword) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getSearchListCount");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, keyword);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+				
+		
+		return result;
+	}
+	
+	public int getListCount(Connection con){
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -216,7 +248,6 @@ public class NoticeDAO {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-			throw new NoticeException("DAO에러 : " + e.getMessage());
 		} finally {
 			close(rset);
 			close(pstmt);
@@ -224,6 +255,51 @@ public class NoticeDAO {
 				
 		
 		return result;
+	}
+
+	public ArrayList<Notice> searchList(Connection con, String keyword, int currentPage, int limit) throws NoticeException {
+		
+		ArrayList<Notice> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Notice>();
+			
+			while(rset.next()) {
+				Notice n = new Notice();
+				
+				n.setnNo(rset.getInt("NNO"));
+				n.setnTitle(rset.getString("NTITLE"));
+				n.setnContent(rset.getString("NCONTENT"));
+				n.setnDate(rset.getDate("NDATE"));
+				
+				list.add(n);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new NoticeException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 	public ArrayList<Notice> selectList(Connection con, int currentPage, int limit) throws NoticeException {
@@ -269,7 +345,6 @@ public class NoticeDAO {
 		
 		return list;
 	}
-
 }
 
 

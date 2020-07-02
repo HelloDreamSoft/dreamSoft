@@ -32,16 +32,26 @@
 	<div class="container">
 
 		<!-- 공지사항 출력 Area -->
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-8"></div>
 			<div class="col-md-4">
+			
 				<div class="product_sidebar">
 					<div class="single_sedebar">
 						<div class="select_option">
+							<select name="limit">
+								<option value="10" selected="selected">10개씩 보기</option>
+								<option value="25">25개씩 보기</option>
+								<option value="50">50개씩 보기</option>
+								<option value="100">100개씩 보기</option>
+							</select>
 							<div class="select_option_list">
 								페이지 <i class="right fas fa-caret-down"></i>
 							</div>
-							<div class="select_option_dropdown">
+							<div class="select_option_dropdown" class="limitPage" >
+								<input type="hidden" name="limit10" value="10" />
+								<input type="hidden" name="limit25" value="25" />
+								<input type="hidden" name="limit50" value="50" />
 								<p>
 									<a href="#" id="limit10">10개씩 보기 </a>
 								</p>
@@ -56,7 +66,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- 공지사항 출력 Area End -->
 
 		<div class="cart_inner">
@@ -108,11 +118,11 @@
 					<ul class="pagination" id="paging">
 						<li class="page-item">
 							<% if(currentPage <= 1) { %>
-							<a onclick="nothing();" id="nothing" class="page-link" aria-label="Previous">
+							<a onclick="nothing(this);" id="nothing" class="page-link" aria-label="Previous">
 								<i class="ti-angle-left"></i>
 							</a>
 							<% } else { %>
-							<a onclick="goPrevious();" id="goPrevious"  class="page-link" aria-label="Previous">
+							<a onclick="location.href='<%=request.getContextPath()%>/nList.no?currentPage=<%=currentPage - 1%>&keyword=<%= request.getParameter("keyword") %>'" id="goPrevious"  class="page-link" aria-label="Previous">
 								<i class="ti-angle-left"></i>
 							</a>
 							<% } %>
@@ -123,24 +133,24 @@
 								if(i == currentPage){
 						%>
 						<li class="page-item">
-							<a onclick="nothing();" class="page-link"><%=i %></a>
+							<a onclick="nothing(this);" class="page-link"><%=i %></a>
 						</li>
 						<%      } else { %>
 						<li class="page-item">
-							<a onclick="goPage();" class="page-link"><%=i %></a>
+							<a onclick="location.href='<%=request.getContextPath()%>/nList.no?currentPage=<%=i%>&keyword=<%= request.getParameter("keyword") %>'" class="page-link"><%=i %></a>						
 						</li>
 						<% 		}
 							}
 						%>
 						<% if(currentPage >= maxPage) { %>
 						<li class="page-item">
-							<a onclick="nothing();" class="page-link" aria-label="Next">
+							<a onclick="nothing(this);" class="page-link" aria-label="Next">
 								<i class="ti-angle-right"></i>
 							</a>
 						</li>
 						<% } else { %>
 						<li class="page-item">
-							<a onclick="goNextPage();" class="page-link" aria-label="Next">
+							<a onclick="location.href='<%=request.getContextPath()%>/nList.no?currentPage=<%=currentPage + 1%>&keyword=<%= request.getParameter("keyword") %>'" class="page-link" aria-label="Next">
 								<i class="ti-angle-right"></i>
 							</a>
 						</li>
@@ -154,19 +164,18 @@
 						<form action="#">
 							<div class="form-group">
 								<div class="input-group mb-3">
-									<input type="text" class="form-control"
-										placeholder='Search Keyword' onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Search Keyword'">
+									<input type="text" class="form-control" id="keyword"
+										placeholder='Search Keyword'>
 									<div class="input-group-append">
-										<button class="btn" type="button">
+										<button class="btn" type="button" disabled="disabled">
 											<i class="ti-search"></i>
 										</button>
 									</div>
 								</div>
 							</div>
-							<button
-								class="button rounded-0 primary-bg text-white w-100 btn_1"
-								type="submit">Search</button>
+							<button class="button rounded-0 primary-bg text-white w-100 btn_1"
+									onclick="search();" 
+									type="submit">Search</button>
 						</form>
 					</aside>
 				</div>
@@ -189,5 +198,20 @@
 			location.href="<%=request.getContextPath()%>/selectOne.no?nno="+nno;
 		});
 	});
+	
+	function nothing(){
+		$(this).unbind('click', false).mouseenter(function(){
+			$(this).css({"background":"lightpink", "cursor":"pointer"});
+		}).mouseout(function(){
+			$(this).css({"background":"none"});
+		});
+		
+	}
+	
+	function search(){
+		alert($("#keyword").val());
+		location.href="<%=request.getContextPath()%>/nList.no?keyword=" + $("#keyword").val();
+	}
+	
 </script>
 <%@ include file="../common/footer.jsp"%>

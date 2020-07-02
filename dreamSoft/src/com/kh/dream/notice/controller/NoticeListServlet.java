@@ -37,6 +37,7 @@ public class NoticeListServlet extends HttpServlet {
 		ArrayList<Notice> list = new ArrayList<Notice>();
 		NoticeService ns = new NoticeService();
 		
+		String keyword = request.getParameter("keyword");
 		int startPage;
 		int endPage;
 		int maxPage;
@@ -47,11 +48,15 @@ public class NoticeListServlet extends HttpServlet {
 		
 		limit = 10;
 		
+		
 		if(request.getParameter("currentPage") != null) {
 			currentPage  = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		
+		System.out.println("keyword : " + keyword);
+		int listCount = ns.getListCount(keyword);
+		
 		try {
-			int listCount = ns.getListCount();
 			
 			maxPage = (int)((double)listCount/limit + 0.9);
 			
@@ -64,13 +69,9 @@ public class NoticeListServlet extends HttpServlet {
 			}
 			
 			// ------------- 페이지 처리는 끝
-			
-			list = ns.selectList(currentPage, limit);
-			
-			
 			System.out.println("총 게시글 수 : " + listCount);
 			
-			list = ns.noticeList();
+			list = ns.noticeSelectList(keyword, currentPage, limit);
 			
 			PageInfo pi = new PageInfo(currentPage, listCount, limit, 
 	                   				   maxPage, startPage, endPage);
