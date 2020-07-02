@@ -2,84 +2,89 @@ package com.kh.dream.member.model.vo;
 
 import java.io.Serializable;
 
-public class Member implements Serializable {
+public class Member implements Serializable{
 
-	private static final long serialVersionUID = 1004L;
-		
-	private String mid;
-	private String mpwd;
-	private String mname;
-	private String mphone;
-	private String memail;
-	private String mbirth;
+	private static final long serialVersionUID = 11L;
 	
-	public Member() {super();}
+	private String mId;
+	private String mPwd;
+	private String mName;
+	private String mPhone;
+	private String mEmail;
+	private String mBirth;
 	
-	// 회원 등록
-	public Member(String mid, String mpwd, String mname, String mphone, String memail, String mbirth) {
+	public Member() {
 		super();
-		this.mid = mid;
-		this.mpwd = mpwd;
-		this.mname = mname;
-		this.mphone = mphone;
-		this.memail = memail;
-		this.mbirth = mbirth;
 	}
 
-	// 로그인용 
-	public Member(String mid, String mpwd) {
+	public Member(String mId, String mPwd, String mName, String mPhone, String mEmail, String mBirth) {
 		super();
-		this.mid = mid;
-		this.mpwd = mpwd;
+		this.mId = mId;
+		this.mPwd = mPwd;
+		this.mName = mName;
+		this.mPhone = mPhone;
+		this.mEmail = mEmail;
+		this.mBirth = mBirth;
 	}
 
-	public String getMid() {
-		return mid;
+	public String getmId() {
+		return mId;
 	}
 
-	public void setMid(String mid) {
-		this.mid = mid;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 
-	public String getMpwd() {
-		return mpwd;
+	public String getmPwd() {
+		return mPwd;
 	}
 
-	public void setMpwd(String mpwd) {
-		this.mpwd = mpwd;
+	public void setmPwd(String mPwd) {
+		this.mPwd = mPwd;
 	}
 
-	public String getMname() {
-		return mname;
+	public String getmName() {
+		return mName;
 	}
 
-	public void setMname(String mname) {
-		this.mname = mname;
+	public void setmName(String mName) {
+		this.mName = mName;
 	}
 
-	public String getMphone() {
-		return mphone;
+	public String getmPhone() {
+		return mPhone;
 	}
 
-	public void setMphone(String mphone) {
-		this.mphone = mphone;
+	public void setmPhone(String mPhone) {
+		this.mPhone = mPhone;
 	}
 
-	public String getMemail() {
-		return memail;
+	public String getmEmail() {
+		return mEmail;
 	}
 
-	public void setMemail(String memail) {
-		this.memail = memail;
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
 	}
 
-	public String getMbirth() {
-		return mbirth;
+	public String getmBirth() {
+		return mBirth;
 	}
 
-	public void setMbirth(String mbirth) {
-		this.mbirth = mbirth;
+	public void setmBirth(String mBirth) {
+		this.mBirth = mBirth;
+	}
+
+	@Override
+	public String toString() {
+		return "Member [mId=" + mId + ", mPwd=" + mPwd + ", mName=" + mName + ", mPhone=" + mPhone + ", mEmail="
+				+ mEmail + ", mBirth=" + mBirth + "]";
 	}
 	
 	
+	
+	
+	
+
 }
+

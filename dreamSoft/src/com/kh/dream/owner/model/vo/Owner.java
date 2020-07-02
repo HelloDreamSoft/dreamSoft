@@ -1,136 +1,105 @@
 package com.kh.dream.owner.model.vo;
 
-import java.io.Serializable;
-
-public class Owner implements Serializable {
-
-	private static final long serialVersionUID = 1010L;
+public class Owner {
+	private String oId;
+	private String oPwd;
+	private String oName;
+	private String oPhone;
+	private String oEmail;
+	private String oRegno;
+	private String oStatus;
+	private String oRegimg;
 	
-	private String oid;
-	private String opwd;
-	private String oname;
-	private String ophone;
-	private String oemail;
-	private String oregno;
-	private int ostatus;
-	private String oregimg;
-	
-	public Owner() {super();}
-
-	
-	public Owner(String oid, String opwd, String oname, String ophone, String oemail, String oregno, int ostatus,
-			String oregimg) {
+	public Owner() {
 		super();
-		this.oid = oid;
-		this.opwd = opwd;
-		this.oname = oname;
-		this.ophone = ophone;
-		this.oemail = oemail;
-		this.oregno = oregno;
-		this.ostatus = ostatus;
-		this.oregimg = oregimg;
+		// TODO Auto-generated constructor stub
 	}
-
-
-	public Owner(String oid, String opwd, String oname, String ophone, String oemail, String oregno, String oregimg) {
+	
+	public Owner(String oId, String oPwd, String oName, String oPhone, String oEmail, String oRegno, String oStatus,
+			String oRegimg) {
 		super();
-		this.oid = oid;
-		this.opwd = opwd;
-		this.oname = oname;
-		this.ophone = ophone;
-		this.oemail = oemail;
-		this.oregno = oregno;
-		this.oregimg = oregimg;
-	}
-
-
-	public Owner(String oid, String opwd) {
-		super();
-		this.oid = oid;
-		this.opwd = opwd;
-	}
-
-
-	public String getOid() {
-		return oid;
-	}
-
-
-	public void setOid(String oid) {
-		this.oid = oid;
-	}
-
-
-	public String getOpwd() {
-		return opwd;
-	}
-
-
-	public void setOpwd(String opwd) {
-		this.opwd = opwd;
-	}
-
-
-	public String getOname() {
-		return oname;
-	}
-
-
-	public void setOname(String oname) {
-		this.oname = oname;
-	}
-
-
-	public String getOphone() {
-		return ophone;
-	}
-
-
-	public void setOphone(String ophone) {
-		this.ophone = ophone;
-	}
-
-
-	public String getOemail() {
-		return oemail;
-	}
-
-
-	public void setOemail(String oemail) {
-		this.oemail = oemail;
-	}
-
-
-	public String getOregno() {
-		return oregno;
-	}
-
-
-	public void setOregno(String oregno) {
-		this.oregno = oregno;
-	}
-
-
-	public int getOstatus() {
-		return ostatus;
-	}
-
-
-	public void setOstatus(int ostatus) {
-		this.ostatus = ostatus;
-	}
-
-
-	public String getOregimg() {
-		return oregimg;
-	}
-
-
-	public void setOregimg(String oregimg) {
-		this.oregimg = oregimg;
+		this.oId = oId;
+		this.oPwd = oPwd;
+		this.oName = oName;
+		this.oPhone = oPhone;
+		this.oEmail = oEmail;
+		this.oRegno = oRegno;
+		this.oStatus = oStatus;
+		this.oRegimg = oRegimg;
 	}
 	
 	
 	
+	public String getoId() {
+		return oId;
+	}
+
+	public void setoId(String oId) {
+		this.oId = oId;
+	}
+
+	public String getoPwd() {
+		return oPwd;
+	}
+
+	public void setoPwd(String oPwd) {
+		this.oPwd = oPwd;
+	}
+
+	public String getoName() {
+		return oName;
+	}
+
+	public void setoName(String oName) {
+		this.oName = oName;
+	}
+
+	public String getoPhone() {
+		return oPhone;
+	}
+
+	public void setoPhone(String oPhone) {
+		this.oPhone = oPhone;
+	}
+
+	public String getoEmail() {
+		return oEmail;
+	}
+
+	public void setoEmail(String oEmail) {
+		this.oEmail = oEmail;
+	}
+
+	public String getoRegno() {
+		return oRegno;
+	}
+
+	public void setoRegno(String oRegno) {
+		this.oRegno = oRegno;
+	}
+
+	public String getoStatus() {
+		return oStatus;
+	}
+
+	public void setoStatus(String oStatus) {
+		this.oStatus = oStatus;
+	}
+
+	public String getoRegimg() {
+		return oRegimg;
+	}
+
+	public void setoRegimg(String oRegimg) {
+		this.oRegimg = oRegimg;
+	}
+
+	@Override
+	public String toString() {
+		return "Owner [oId=" + oId + ", oPwd=" + oPwd + ", oName=" + oName + ", oPhone=" + oPhone + ", oEmail=" + oEmail
+				+ ", oRegno=" + oRegno + ", oStatus=" + oStatus + ", oRegimg=" + oRegimg + "]";
+
+	}
 	
+
 }
