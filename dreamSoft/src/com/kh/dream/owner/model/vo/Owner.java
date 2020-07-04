@@ -38,6 +38,12 @@ public class Owner {
 		this.oRegno = oRegno;
 		this.oRegimg = oRegimg;
 	}
+	
+	public Owner(String oId, String oPwd) {
+		super();
+		this.oId = oId;
+		this.oPwd = oPwd;
+	}
 
 	public String getoId() {
 		return oId;
