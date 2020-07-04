@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.kh.dream.place.model.vo.*, java.util.*" %>
+<%
+	ArrayList<Place> list = (ArrayList<Place>) request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	
+%>
 
 <%@ include file="../common/header.jsp"%>
 
@@ -57,105 +69,18 @@
 				<div class="product_list">
 					<div class="row">
 						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
+							<div class="single_product_item"><% for(Place p : list) { %><tr onclick="goPlaceView();">
 								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_1.png" alt="#"
 									class="img-fluid">
 								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
+									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp"><%=p.getpName()%> / <b>★3.5</b> </a>
 								</h3>
-								<p>지역 / 음식종류</p>
+								<p><%=p.getpAddress()%> / 음식종류</p>
+								<% } %>
 							</div>
 						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_2.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_3.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_4.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_5.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_6.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_7.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_8.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_9.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_10.png" alt="#"
-									class="img-fluid">
-								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">플레이스 명 / <b>★3.5</b> </a>
-								</h3>
-								<p>지역 / 음식종류</p>
-							</div>
-						</div>
+						
+						
 						<div class="table-responsive">
 							<div class="checkout_btn_inner float-right">
 								<a class="btn_1" href="<%=request.getContextPath()%>/views/place/placeInsert.jsp">등록하기</a>
