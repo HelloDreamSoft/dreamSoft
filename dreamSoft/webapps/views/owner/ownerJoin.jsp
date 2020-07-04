@@ -23,13 +23,15 @@
 					<div class="mt-10">
 						<input type="text" name="id" placeholder="ID"
 							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = 'ID'" required
+							onblur="this.placeholder = 'ID / 영대문자숫자 4~15자리로 입력해주세요'" 
+								required pattern="^[a-zA-Z0-9]{4,15}$"
 							class="single-input">
 					</div>
 					<div class="mt-10">
 						<input type="password" name="pw" placeholder="비밀번호"
 							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '비밀번호'" required
+							onblur="this.placeholder = '비밀번호 / 영대문자숫자 4~12자리로 입력해주세요'"
+								required pattern="^[a-zA-Z0-9]{4,12}$"
 							class="single-input">
 					</div>
 					<div class="mt-10">
@@ -41,13 +43,14 @@
 					<div class="mt-10">
 						<input type="text" name="name" placeholder="이름"
 							onfocus="this.placeholder = ''"
-							onblur="this.placeholder = '이름'" required
+							onblur="this.placeholder = '이름'" required pattern="^[가-힣]*$"
 							class="single-input">
 					</div>
 					<div class="mt-10">
 						<input type="text" name="phone" placeholder="Phone"
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = 'Phone'" required
+							pattern="^(010)[0-9]{4}[0-9]{4}$"
 							class="single-input">
 					</div>
 					<div class="mt-10">
@@ -60,6 +63,7 @@
 						<input type="text" name="oregno" placeholder="사업자등록번호"
 							onfocus="this.placeholder = ''"
 							onblur="this.placeholder = '사업자등록번호'" required
+							pattern="^[0-9]{10}$"
 							class="single-input">
 					</div>		
 				<!-- 	<div class="mt-10">
