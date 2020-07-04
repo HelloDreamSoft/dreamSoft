@@ -1,30 +1,30 @@
 package com.kh.dream.member.model.service;
 
-
+import com.kh.dream.member.model.dao.MemberDAO;
+import com.kh.dream.member.model.vo.Member;
 import static com.kh.dream.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 
-import com.kh.dream.common.MemberException;
-import com.kh.dream.member.model.dao.MemberDAO;
-import com.kh.dream.member.model.vo.Member;
-
 public class MemberService {
-	private Connection con;
+	
 	private MemberDAO mDAO = new MemberDAO();
-
-	public int updateMember(Member m) throws MemberException {
+	private Connection con; 
+	
+	public int insertMember(Member m) {
 		con = getConnection();
+		int result = mDAO.insertMember(con, m);
 		
-		int result = mDAO.updateMember(con, m);
-		
-		if( result > 0) commit(con);
+		if(result>0)commit(con);
 		else rollback(con);
-		
-		close(con);
-		
 		return result;
-		
+	}
+
+	public Member selectMember(Member m) {
+		con = getConnection();
+		Member result = mDAO.selectMember(con, m);
+		close(con);
+		return result;
 	}
 
 }

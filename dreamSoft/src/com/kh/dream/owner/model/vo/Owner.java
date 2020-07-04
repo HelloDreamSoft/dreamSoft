@@ -98,9 +98,8 @@ public class Owner {
 	public String toString() {
 		return "Owner [oId=" + oId + ", oPwd=" + oPwd + ", oName=" + oName + ", oPhone=" + oPhone + ", oEmail=" + oEmail
 				+ ", oRegno=" + oRegno + ", oStatus=" + oStatus + ", oRegimg=" + oRegimg + "]";
+
 	}
-	
-	
 	
 
 }

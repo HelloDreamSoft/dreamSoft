@@ -17,7 +17,7 @@ import com.kh.dream.common.EncryptWrapper;
  */
 
 // 수정이 필요한 부분이니까 꼭 봐주세요!
-@WebFilter({"/mInsert.me", "/login.me", "/mUpdate.me", "/mDelete.me", "/MemberPw.do"})
+@WebFilter({"/mJoin.me", "/mlogin.me", "/mUpdate.me", "/mDelete.me", "/MemberPw.do","/oJoin.ow"})
 public class EncryptFilter implements Filter {
 
     /**
@@ -43,7 +43,7 @@ public class EncryptFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		
 		// 비밀번호 확인용 값 저장
-		request.setAttribute("originPwd", req.getParameter("userPwd"));
+		request.setAttribute("originPw", req.getParameter("pw"));
 		
 		// 암호화 모듈 적용하기 (필터 안에서 수행할 래퍼 작성하기)
 		EncryptWrapper ew = new EncryptWrapper(req);
