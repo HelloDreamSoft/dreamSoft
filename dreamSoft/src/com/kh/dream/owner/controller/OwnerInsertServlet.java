@@ -30,12 +30,14 @@ public class OwnerInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 		String oId = request.getParameter("id");
 		String oPwd = request.getParameter("pw");
 		String oName = request.getParameter("name");
 		String oPhone = request.getParameter("phone");
 		String oEmail = request.getParameter("email");
 		String oRegno = request.getParameter("oregno");
+	
 		
 		Owner o = new Owner(oId, oPwd, oName,
 								oPhone, oEmail,oRegno);	
