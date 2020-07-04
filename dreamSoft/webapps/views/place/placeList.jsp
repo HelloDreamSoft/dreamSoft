@@ -69,17 +69,16 @@
 				<div class="product_list">
 					<div class="row">
 						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<% for(Place p : list) { %>
-								<tr onclick="goPlaceView();"> <!-- 의의의읭 -->
+							<% for(Place p : list) { %>
+							<div class="single_product_item" onclick="goPlaceView();">
 								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_1.png" alt="#"
 									class="img-fluid">
 								<h3>
 									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp"><%=p.getpName()%> / <b>★3.5</b> </a>
 								</h3>
 								<p><%=p.getpAddress()%> / 음식종류</p>
-								<% } %>
 							</div>
+							<% } %>
 						</div>
 						
 						
@@ -122,5 +121,10 @@
 	</div>
 </section>
 <!-- product list part end-->
+<script>
+	function goPlaceView(){
+		location.href="<%=request.getContextPath()%>/pList.pl";
+	}
+</script>
 
 <%@ include file="../common/footer.jsp"%>

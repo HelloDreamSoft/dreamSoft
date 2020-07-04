@@ -67,16 +67,16 @@ public class PlaceListServlet extends HttpServlet {
 
 			// ---------- 페이지 처리는 끝
 
-			list = pl.selectList(currentPage, limit);
+//			list = pl.selectList(currentPage, limit);
 
 			System.out.println("총 게시글 수 : " + listCount);
 
 			list = pl.placeList();
 
-			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+//			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
+//			request.setAttribute("pi", pi);
 
 			request.getRequestDispatcher("views/place/placeList.jsp")
 				   .forward(request, response);

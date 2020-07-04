@@ -98,7 +98,7 @@
                                     <a class="nav-link" href="<%= request.getContextPath() %>/index.jsp">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/views/place/placeList.jsp">PLACE</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/pList.pl">PLACE</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="<%=request.getContextPath()%>/nList.no">공지사항</a>
