@@ -28,8 +28,6 @@ public class Owner {
 		this.oRegimg = oRegimg;
 	}
 	
-	
-	
 	public Owner(String oId, String oPwd, String oName, String oPhone, String oEmail, String oRegno, String oRegimg) {
 		super();
 		this.oId = oId;
@@ -40,8 +38,6 @@ public class Owner {
 		this.oRegno = oRegno;
 		this.oRegimg = oRegimg;
 	}
-
-	
 	
 	public Owner(String oId, String oPwd) {
 		super();
