@@ -30,6 +30,25 @@ public class Owner {
 	
 	
 	
+	public Owner(String oId, String oPwd, String oName, String oPhone, String oEmail, String oRegno, String oRegimg) {
+		super();
+		this.oId = oId;
+		this.oPwd = oPwd;
+		this.oName = oName;
+		this.oPhone = oPhone;
+		this.oEmail = oEmail;
+		this.oRegno = oRegno;
+		this.oRegimg = oRegimg;
+	}
+
+	
+	
+	public Owner(String oId, String oPwd) {
+		super();
+		this.oId = oId;
+		this.oPwd = oPwd;
+	}
+
 	public String getoId() {
 		return oId;
 	}

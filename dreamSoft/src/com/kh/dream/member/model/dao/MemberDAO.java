@@ -36,12 +36,12 @@ public class MemberDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, m.getMid());
-			pstmt.setString(2, m.getMpwd());
-			pstmt.setString(3, m.getMname());
-			pstmt.setString(4, m.getMphone());
-			pstmt.setString(5, m.getMemail());
-			pstmt.setString(6, m.getMbirth());
+			pstmt.setString(1, m.getmId());
+			pstmt.setString(2, m.getmPwd());
+			pstmt.setString(3, m.getmName());
+			pstmt.setString(4, m.getmPhone());
+			pstmt.setString(5, m.getmEmail());
+			pstmt.setString(6, m.getmBirth());
 			
 			result = pstmt.executeUpdate();
 			
@@ -63,20 +63,20 @@ public class MemberDAO {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, m.getMid());
-			pstmt.setString(2, m.getMpwd());
+			pstmt.setString(1, m.getmId());
+			pstmt.setString(2, m.getmPwd());
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				result = new Member();
 				
-				result.setMid(m.getMid());
-				result.setMpwd(m.getMpwd());
-				result.setMname(rset.getString("mname"));
-				result.setMphone(rset.getString("mphone"));
-				result.setMemail(rset.getString("memail"));
-				result.setMbirth(rset.getString("mbirth"));
+				result.setmId(m.getmId());
+				result.setmPwd(m.getmPwd());
+				result.setmName(rset.getString("mname"));
+				result.setmPhone(rset.getString("mphone"));
+				result.setmEmail(rset.getString("memail"));
+				result.setmBirth(rset.getString("mbirth"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

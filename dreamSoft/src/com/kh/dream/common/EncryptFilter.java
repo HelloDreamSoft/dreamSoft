@@ -17,7 +17,7 @@ import com.kh.dream.common.EncryptWrapper;
  */
 
 // 수정이 필요한 부분이니까 꼭 봐주세요!
-@WebFilter({"/mJoin.me", "/mlogin.me", "/mUpdate.me", "/mDelete.me", "/MemberPw.do","/oJoin.ow"})
+@WebFilter({"/mJoin.me", "/mLogin.me", "/mUpdate.me", "/mDelete.me", "/MemberPw.do","/oJoin.ow","/oLogin.ow"})
 public class EncryptFilter implements Filter {
 
     /**

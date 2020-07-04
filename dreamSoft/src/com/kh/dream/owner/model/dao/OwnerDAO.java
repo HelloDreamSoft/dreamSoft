@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -32,13 +33,13 @@ public class OwnerDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, o.getOid());
-			pstmt.setString(2, o.getOpwd());
-			pstmt.setString(3, o.getOname());
-			pstmt.setString(4, o.getOphone());
-			pstmt.setString(5, o.getOemail());
-			pstmt.setString(6, o.getOregno());
-			pstmt.setString(7, o.getOregimg());
+			pstmt.setString(1, o.getoId());
+			pstmt.setString(2, o.getoPwd());
+			pstmt.setString(3, o.getoName());
+			pstmt.setString(4, o.getoPhone());
+			pstmt.setString(5, o.getoEmail());
+			pstmt.setString(6, o.getoRegno());
+			pstmt.setString(7, o.getoRegimg());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -49,6 +50,42 @@ public class OwnerDAO {
 		}
 		return result;
 		
+	}
+
+	public Owner selectOwner(Connection con, Owner o) {
+		Owner result = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOwner");
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, o.getoId());
+			pstmt.setString(2, o.getoPwd());
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = new Owner();
+				
+				result.setoId(o.getoId());
+				result.setoPwd(o.getoPwd());
+				result.setoName(rset.getString("oname"));
+				result.setoPhone(rset.getString("ophone"));
+				result.setoEmail(rset.getString("oemail"));
+				result.setoRegno(rset.getString("oregno"));
+				result.setoRegimg(rset.getString("oregimg"));
+				
+			}
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
 	}
 
 }
