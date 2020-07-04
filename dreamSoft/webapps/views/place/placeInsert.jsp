@@ -77,8 +77,7 @@
 						<a class="btn_1"
 							href="<%=request.getContextPath()%>/views/place/placeList.jsp">등록완료</a>
 						<a class="btn_1 checkout_btn_1"
-							href="<%=request.getContextPath()%>/views/place/placeList.jsp">목록으로
-							가기</a>
+							href="<%=request.getContextPath()%>/views/place/placeList.jsp">목록으로 가기</a>
 					</div>
 				</form>
 			</div>
@@ -89,22 +88,53 @@
 
 
 <script>
-	$('.summernote').summernote(
-			{
-				placeholder : '내용을 입력하세요',
-				tabsize : 2,
-				height : 600, // set editor height
-				minHeight : null, // set minimum height of editor
-				maxHeight : null, // set maximum height of editor
-				focus : false, // set focus to editable area after initializing summernote
-				toolbar : [ [ 'style', [ 'style' ] ],
-						[ 'font', [ 'bold', 'underline', 'clear' ] ],
-						[ 'color', [ 'color' ] ],
-						[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
-						[ 'table', [ 'table' ] ],
-						[ 'insert', [ 'link', 'picture', 'video' ] ],
-						[ 'view', [ 'fullscreen', 'codeview', 'help' ] ] ]
-			});
+	var check = $('.summernote').summernote({
+		  height : 600 // 에디터 높이
+		, minHeight : null // 최소 높이
+		, maxHeight : null // 최대 높이
+		, focus : true  // 에디터 로딩후 포커스를 맞출지 여부
+		, lang : "ko-KR" // 한글 설정
+		, placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
+		, toolbar: [
+	      // [groupName, [list of button]]
+	      ['style', ['style']],
+	      ['font', ['strikethrough', 'bold', 'underline', 'clear']],
+	      ['Font Style', ['fontname']],
+	      ['fontsize', ['fontsize']],
+	      ['color', ['color']],
+	      ['para', ['ul', 'ol', 'paragraph']],
+	      ['table', ['table']],
+	      ['height', ['height']],
+	      ['insert', ['link', 'picture', 'video']],
+	      ['view', ['fullscreen', 'codeview', 'help']]
+	   ], callbacks : {
+			onImageUpload : function(files, editor,
+					welEditorble) {
+				data = new FormData();
+				data.append("file", files[0]);
+				var $note = $(this);
+				
+				$.ajax({
+					data : data,
+					type : "post",
+					url : '/dream/pImgInsert.pl', // servlet url
+					cache : false,
+					contentType : false,
+					processData : false,
+					success : function(fileUrl) {
+						check.summernote('insertImage', fileUrl);
+						alert("이미지 등록 성공!");
+					},
+					error : function(request, status, error) {
+						alert("code:" + request.status + "\n"
+								+ "message:"
+								+ request.responseText + "\n"
+								+ "error:" + error);
+					}
+				});
+			}
+		}
+	});
 </script>
 
 

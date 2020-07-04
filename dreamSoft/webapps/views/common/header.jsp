@@ -46,6 +46,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>pillloMart</title>
+    
+    
     <link rel="icon" href="<%= request.getContextPath() %>/resources/img/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.min.css">
@@ -65,20 +67,17 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/style.css">
     
-
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script> -->
+    
     <!-- 섬머노트 -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
     
     <!-- 지도 부르기 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037f9ae8baf28354df2203507cf3111a"></script>
 
-
-
-    
-    
 </head>
 <body>
 	<!--::header part start::-->
@@ -149,8 +148,7 @@
         </div>
     </header>
     <!-- Header part end-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
 
 
 <body>

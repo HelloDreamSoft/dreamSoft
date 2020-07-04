@@ -1,4 +1,4 @@
-package com.kh.dream.category.model.vo;
+package com.kh.dream.place.model.vo;
 
 import java.io.Serializable;
 
@@ -19,6 +19,12 @@ public class Category implements Serializable{
 		this.cName = cName;
 		this.cNo = cNo;
 	}
+	
+	public Category(String cName) {
+		super();
+		this.cName = cName;
+	}
+
 	public String getcName() {
 		return cName;
 	}

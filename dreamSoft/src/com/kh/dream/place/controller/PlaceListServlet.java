@@ -39,6 +39,7 @@ public class PlaceListServlet extends HttpServlet {
 		ArrayList<Place> list = new ArrayList<Place>();
 		PlaceService pl = new PlaceService();
 
+		String keyword = request.getParameter("keyword");
 		int startPage;
 		int endPage;
 		int maxPage;
@@ -52,6 +53,8 @@ public class PlaceListServlet extends HttpServlet {
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currnetPage"));
 		}
+		
+		System.out.println("keyword : " + keyword);
 		try {
 			int listCount = pl.getListCount();
 

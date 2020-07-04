@@ -57,15 +57,12 @@ public class PlaceDAO {
 				Place p = new Place();
 				
 				p.setpNo(rset.getInt("PNO"));
-				p.setcNo(rset.getInt("CNO"));
+				p.setcName(rset.getString("CNAME"));
 				p.setoId(rset.getString("OID"));
 				p.setpImg(rset.getString("PIMG"));
 				p.setpName(rset.getString("PNAME"));
-				p.setpContent(rset.getString("PCONTENT"));
 				p.setpCall(rset.getString("PCALL"));
 				p.setpAddress(rset.getString("PADDRESS"));
-				p.setpTime(rset.getString("PTIME"));
-				p.setpBreaktime(rset.getString("PBREAKTIME"));
 				
 				list.add(p);
 			}
