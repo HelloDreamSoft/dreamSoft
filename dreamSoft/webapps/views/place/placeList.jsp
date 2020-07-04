@@ -69,7 +69,9 @@
 				<div class="product_list">
 					<div class="row">
 						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item"><% for(Place p : list) { %><tr onclick="goPlaceView();">
+							<div class="single_product_item">
+								<% for(Place p : list) { %>
+								<tr onclick="goPlaceView();">
 								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_1.png" alt="#"
 									class="img-fluid">
 								<h3>
