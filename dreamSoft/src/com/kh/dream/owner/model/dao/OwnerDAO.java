@@ -32,13 +32,13 @@ public class OwnerDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, o.getOid());
-			pstmt.setString(2, o.getOpwd());
-			pstmt.setString(3, o.getOname());
-			pstmt.setString(4, o.getOphone());
-			pstmt.setString(5, o.getOemail());
-			pstmt.setString(6, o.getOregno());
-			pstmt.setString(7, o.getOregimg());
+			pstmt.setString(1, o.getoId());
+			pstmt.setString(2, o.getoPwd());
+			pstmt.setString(3, o.getoName());
+			pstmt.setString(4, o.getoPhone());
+			pstmt.setString(5, o.getoEmail());
+			pstmt.setString(6, o.getoRegno());
+			pstmt.setString(7, o.getoRegimg());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

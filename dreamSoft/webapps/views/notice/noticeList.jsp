@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.kh.dream.notice.model.vo.*, java.util.*"%>
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	
+%>
 
 <%@ include file="../common/header.jsp"%>
 <!-- breadcrumb part start-->
@@ -20,31 +32,41 @@
 	<div class="container">
 
 		<!-- 공지사항 출력 Area -->
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-md-8"></div>
 			<div class="col-md-4">
+			
 				<div class="product_sidebar">
 					<div class="single_sedebar">
 						<div class="select_option">
+							<select name="limit">
+								<option value="10" selected="selected">10개씩 보기</option>
+								<option value="25">25개씩 보기</option>
+								<option value="50">50개씩 보기</option>
+								<option value="100">100개씩 보기</option>
+							</select>
 							<div class="select_option_list">
-								10개씩 보기 <i class="right fas fa-caret-down"></i>
+								페이지 <i class="right fas fa-caret-down"></i>
 							</div>
-							<div class="select_option_dropdown">
+							<div class="select_option_dropdown" class="limitPage" >
+								<input type="hidden" name="limit10" value="10" />
+								<input type="hidden" name="limit25" value="25" />
+								<input type="hidden" name="limit50" value="50" />
 								<p>
-									<a href="#">25개씩 보기 </a>
+									<a href="#" id="limit10">10개씩 보기 </a>
 								</p>
 								<p>
-									<a href="#">50개씩 보기 </a>
+									<a href="#" id="limit25">25개씩 보기 </a>
 								</p>
 								<p>
-									<a href="#">100개씩 보기</a>
+									<a href="#" id="limit50">50개씩 보기</a>
 								</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- 공지사항 출력 Area End -->
 
 		<div class="cart_inner">
@@ -61,22 +83,20 @@
 					<tbody>
 
 						<%
-							for (int i = 1; i < 11; i++) {
+							for (Notice n : list) {
 						%>
 						<tr onclick="goNoticeView();">
 							<td>
-								<h5><%=i%></h5>
+								<h5><%=n.getnNo()%></h5>
 							</td>
 							<td>
 								<h5>
-									<a
-										href="<%=request.getContextPath()%>/views/notice/noticeView.jsp">제목입니다.</a>
+									<a><%=n.getnTitle()%></a>
 								</h5>
 							</td>
 							<td>
-								<h5>작성일</h5>
+								<h5><%=n.getnDate()%></h5>
 							</td>
-
 						</tr>
 						<%
 							}
@@ -95,16 +115,46 @@
 		<div class="col-lg-12 mb-5 mb-lg-0">
 			<div class="blog_left_sidebar">
 				<nav class="blog-pagination justify-content-center d-flex">
-					<ul class="pagination">
-						<li class="page-item"><a href="#" class="page-link"
-							aria-label="Previous"> <i class="ti-angle-left"></i>
-						</a></li>
-						<li class="page-item"><a href="#" class="page-link">1</a></li>
-						<li class="page-item active"><a href="#" class="page-link">2</a>
+					<ul class="pagination" id="paging">
+						<li class="page-item">
+							<% if(currentPage <= 1) { %>
+							<a onclick="nothing(this);" id="nothing" class="page-link" aria-label="Previous">
+								<i class="ti-angle-left"></i>
+							</a>
+							<% } else { %>
+							<a onclick="location.href='<%=request.getContextPath()%>/nList.no?currentPage=<%=currentPage - 1%>&keyword=<%= request.getParameter("keyword") %>'" id="goPrevious"  class="page-link" aria-label="Previous">
+								<i class="ti-angle-left"></i>
+							</a>
+							<% } %>
 						</li>
-						<li class="page-item"><a href="#" class="page-link"
-							aria-label="Next"> <i class="ti-angle-right"></i>
-						</a></li>
+						
+						<% 
+							for(int i = startPage; i <= endPage; i++) {
+								if(i == currentPage){
+						%>
+						<li class="page-item">
+							<a onclick="nothing(this);" class="page-link"><%=i %></a>
+						</li>
+						<%      } else { %>
+						<li class="page-item">
+							<a onclick="location.href='<%=request.getContextPath()%>/nList.no?currentPage=<%=i%>&keyword=<%= request.getParameter("keyword") %>'" class="page-link"><%=i %></a>						
+						</li>
+						<% 		}
+							}
+						%>
+						<% if(currentPage >= maxPage) { %>
+						<li class="page-item">
+							<a onclick="nothing(this);" class="page-link" aria-label="Next">
+								<i class="ti-angle-right"></i>
+							</a>
+						</li>
+						<% } else { %>
+						<li class="page-item">
+							<a onclick="location.href='<%=request.getContextPath()%>/nList.no?currentPage=<%=currentPage + 1%>&keyword=<%= request.getParameter("keyword") %>'" class="page-link" aria-label="Next">
+								<i class="ti-angle-right"></i>
+							</a>
+						</li>
+						<% } %>
 					</ul>
 				</nav>
 			</div>
@@ -114,17 +164,17 @@
 						<form action="#">
 							<div class="form-group">
 								<div class="input-group mb-3">
-									<input type="text" class="form-control"
-										placeholder='Search Keyword' onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Search Keyword'">
+									<input type="text" class="form-control" id="keyword"
+										placeholder='Search Keyword'>
 									<div class="input-group-append">
-										<button class="btn" type="button">
+										<button class="btn" type="button" disabled="disabled">
 											<i class="ti-search"></i>
 										</button>
 									</div>
 								</div>
 							</div>
 							<button class="button rounded-0 primary-bg text-white w-100 btn_1"
+									onclick="search();" 
 									type="submit">Search</button>
 						</form>
 					</aside>
@@ -138,9 +188,30 @@
 
 
 <script>
-	function goNoticeView(){
-		location.href = "<%=request.getContextPath()%>
-	/views/notice/noticeView.jsp";
+	$(function(){
+		$(".table td").mouseenter(function(){
+			$(this).parent().css({"background":"lightpink", "cursor":"pointer"});
+		}).mouseout(function(){
+			$(this).parent().css({"background":"none"});
+		}).click(function(){
+			var nno = $(this).parent().children().eq(0).text();
+			location.href="<%=request.getContextPath()%>/selectOne.no?nno="+nno;
+		});
+	});
+	
+	function nothing(){
+		$(this).unbind('click', false).mouseenter(function(){
+			$(this).css({"background":"lightpink", "cursor":"pointer"});
+		}).mouseout(function(){
+			$(this).css({"background":"none"});
+		});
+		
 	}
+	
+	function search(){
+		alert($("#keyword").val());
+		location.href="<%=request.getContextPath()%>/nList.no?keyword=" + $("#keyword").val();
+	}
+	
 </script>
 <%@ include file="../common/footer.jsp"%>

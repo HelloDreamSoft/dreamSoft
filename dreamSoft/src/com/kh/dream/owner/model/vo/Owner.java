@@ -28,8 +28,17 @@ public class Owner {
 		this.oRegimg = oRegimg;
 	}
 	
-	
-	
+	public Owner(String oId, String oPwd, String oName, String oPhone, String oEmail, String oRegno, String oRegimg) {
+		super();
+		this.oId = oId;
+		this.oPwd = oPwd;
+		this.oName = oName;
+		this.oPhone = oPhone;
+		this.oEmail = oEmail;
+		this.oRegno = oRegno;
+		this.oRegimg = oRegimg;
+	}
+
 	public String getoId() {
 		return oId;
 	}

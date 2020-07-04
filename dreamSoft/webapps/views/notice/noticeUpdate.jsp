@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.kh.dream.notice.model.vo.*" %>
+<%
+	Notice n = (Notice)request.getAttribute("notice");
+%>
 
 <%@ include file="../common/header.jsp"%>
 <!-- breadcrumb part start-->
@@ -20,36 +24,39 @@
 	<div class="container">
 		<div class="cart_inner">
 			<div class="table-responsive">
-				<form method="post">
+				<form method="post" enctype="multipart/form-data" id="updateForm">
 					<table class="table">
 						<tbody>
 							<tr>
 								<td>
-									<h5 style="text-align: center">제목</h5>
+									<h5 style="text-align: center"><%=n.getnNo() %></h5>
 								</td>
-								<td colspan="3">
-									<input type="text" placeholder="제목을 입력하세요." value="제목입니다." style="width: 100%; height: 50px"/>
+								<td colspan="2">
+									<input type="text" name="nTitle" value="<%=n.getnTitle() %>" style="width: 100%; height: 50px"/>
 								</td>
+								<td style="text-align: center;"><%=n.getnDate() %></td>
 							</tr>
 							<tr>
 								<td colspan="4">
-									<textarea class="summernote"></textarea>
+									<textarea class="summernote" name="nContent"><%=n.getnContent() %></textarea>
 								</td>
 							</tr>
 						</tbody>
 					</table>
+					<div class="checkout_btn_inner float-right">
+						<input type="hidden" name="nNo" value="<%=n.getnNo() %>" />
+						<input type="hidden" name="nDate" value="<%=n.getnDate() %>" />
+						<a class="btn_1" onclick="goUpdate();">수정완료</a> 
+						<a class="btn_1 checkout_btn_1" onclick="goCancel();">취소하기</a>
+					</div>
 				</form>
-				<div class="checkout_btn_inner float-right">
-					<a class="btn_1" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">등록완료</a> 
-					<a class="btn_1 checkout_btn_1" href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">취소하기</a>
-				</div>
 			</div>
 		</div>
 	</div>
 </section>
 <script>
 	//여기 아래 부분
-	$('.summernote').summernote({
+	var check = $('.summernote').summernote({
 		  height : 600 // 에디터 높이
 		, minHeight : null // 최소 높이
 		, maxHeight : null // 최대 높이
@@ -68,15 +75,51 @@
             ['height', ['height']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']]
-         ]
-		
+         ], callbacks : {
+			onImageUpload : function(files, editor,
+					welEditorble) {
+				data = new FormData();
+				data.append("file", files[0]);
+				var $note = $(this);
+				
+				$.ajax({
+					data : data,
+					type : "post",
+					url : '/dream/nImgInsert.no', // servlet url
+					cache : false,
+					contentType : false,
+					processData : false,
+					success : function(fileUrl) {
+						check.summernote('insertImage', fileUrl);
+						alert("이미지 등록 성공!");
+					},
+					error : function(request, status, error) {
+						alert("code:" + request.status + "\n"
+								+ "message:"
+								+ request.responseText + "\n"
+								+ "error:" + error);
+					}
+				});
+			}
+		}
 	});
+	
 	$("div.note-editable").on('drop',function(e){
         for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
         	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$(".summernote")[0]);
         }
        e.preventDefault();
 	});
+	
+	function goUpdate(){
+		$("#updateForm").attr("action","<%=request.getContextPath()%>/nUpdate.no").submit();
+		alert("수정이 완료되었습니다.");
+	}
+	
+	function goCancel(){
+		alert("수정을 취소합니다.");
+		$("#updateForm").attr("action","<%=request.getContextPath()%>/selectOne.no?nno=<%=n.getnNo()%>").submit();
+	}
 	
 </script>
 <!--================End Cart Area =================-->
