@@ -10,7 +10,7 @@ public class OwnerService {
 	private Connection con;
 	private OwnerDAO oDAO = new OwnerDAO();
 	
-	public int InsertOwner(Owner o) {
+	public int insertOwner(Owner o) {
 		con = getConnection();
 		int result = oDAO.insertOwner(con, o);
 		if(result>0)commit(con);

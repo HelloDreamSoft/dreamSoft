@@ -19,8 +19,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12" style = "padding-left:400px; padding-right:400px;">
 				<h3 class="mb-30">사업자 회원 가입</h3>
-				<form action="<%= request.getContextPath()%>/oJoin.ow" method="post"
-					enctype="multipart/form-data">
+				<form action="<%= request.getContextPath()%>/oJoin.ow" method="post">
 					<div class="mt-10">
 						<input type="text" name="id" placeholder="ID"
 							onfocus="this.placeholder = ''"
@@ -63,12 +62,12 @@
 							onblur="this.placeholder = '사업자등록번호'" required
 							class="single-input">
 					</div>		
-					<div class="mt-10">
+				<!-- 	<div class="mt-10">
 					<label style="onfocus:'' onblur:'사진 업로드'">사진 업로드</label>
 						<label for="atfile">+</label>
 						<input type="file" name="file" id="atfile" style="display:none;" required
 							class=" single-input file">
-					</div>
+					</div> -->
 	
 					<br>
 					<div class="mt-10">

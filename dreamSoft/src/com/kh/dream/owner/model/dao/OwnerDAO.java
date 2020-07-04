@@ -39,8 +39,7 @@ public class OwnerDAO {
 			pstmt.setString(4, o.getoPhone());
 			pstmt.setString(5, o.getoEmail());
 			pstmt.setString(6, o.getoRegno());
-			pstmt.setString(7, o.getoRegimg());
-			
+			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			
@@ -75,7 +74,6 @@ public class OwnerDAO {
 				result.setoPhone(rset.getString("ophone"));
 				result.setoEmail(rset.getString("oemail"));
 				result.setoRegno(rset.getString("oregno"));
-				result.setoRegimg(rset.getString("oregimg"));
 				
 			}
 		} catch (SQLException e) {
