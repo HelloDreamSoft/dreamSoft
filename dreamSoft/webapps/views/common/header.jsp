@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "com.kh.dream.member.model.vo.*"%>
- <% Member m = (Member)session.getAttribute("member");  %>
+    pageEncoding="UTF-8" import = "com.kh.dream.member.model.vo.*, com.kh.dream.owner.model.vo.*"%>
+ <% Member m = (Member)session.getAttribute("member");
+	Owner o = (Owner)session.getAttribute("owner");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,12 +114,16 @@
                                         	회원관리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                    	<% if ((m != null)||(o!=null)) {%>
+                                    	<a class="dropdown-item" id="logout">로그아웃</a>
+                                    	<%}else {%>
                                     	<a class="dropdown-item" id="login" >로그인</a>
+                                    	<%}%>
                                     	<a class="dropdown-item" href="<%=request.getContextPath()%>/views/member/memberDetail.jsp">일반회원 정보 수정</a>
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/views/owner/ownerDetail.jsp">사업자 정보 수정</a>
                                     </div>
                                 </li>
-                               <% if (m != null) {%><%} else { %>
+                               <% if ((m != null)||(o!=null))  {%><%} else { %>
                               
                                 <li class="nav-item">
                                     <a class="nav-link" href="<%=request.getContextPath()%>/views/joinChoose.jsp">회원가입</a>
@@ -149,6 +155,7 @@
 
 <body>
 <div id="ex1" class="modal">
+<form>
 	<div class = "modal-content">
 	<div><br></div>
  	<div class="login">
@@ -162,13 +169,13 @@
  	<br>
  	
  	<div>
- 	<input type="radio" value="일반회원"/>일반회원 &nbsp; &nbsp;
- 	<input type="radio" value="사업자회원" />사업자회원
+ 	<input type="radio" name="radio" value="1"/>일반회원 &nbsp; &nbsp;
+ 	<input type="radio" name="radio" value="2" />사업자회원
  	</div>
  	<br>
  	
  	<div>
- 	<button class="button1" onclick ="login()"> 로그인</button>  &nbsp; &nbsp;
+ 	<button class="button1 molongin" onclick="submit" > 로그인</button>  &nbsp; &nbsp;
  	<button class="button1" onclick="goBack()"> 취소하기</button>
  	</div>
  	<br>
@@ -177,6 +184,7 @@
  	</div>
  	</div>
  	<div class="modal-layout" ></div>
+ 	</form>
 </div>
 <script>
 	<!-- 취소시 모달창만 꺼지게 하는기능-->
@@ -193,10 +201,23 @@
 			$('.modal').modal('hide');
 		});
 	});
-	function login(){
-		location.href="/dream/mLogin.me";
-	}
-
+	
+	$(function(){
+		$("#logout").click(function(){
+			location.href ="/dream/mLogout.me";
+		});
+	});
+	$(function(){
+		$(".molongin").click(function (){
+			if($("input[name='radio']:checked").val() == 1){
+				$("form").attr("action","/dream/mLogin.me");
+			}else if($("input[name='radio']:checked").val() == 2){
+				$("form").attr("action","/dream/oLogin.ow");
+			}
+		});
+	});
+	
+	
 </script>
     
     

@@ -1,4 +1,4 @@
-package com.kh.dream.member.controller;
+package com.kh.dream.owner.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.dream.member.model.service.MemberService;
-import com.kh.dream.member.model.vo.Member;
+import com.kh.dream.owner.model.service.OwnerService;
+import com.kh.dream.owner.model.vo.Owner;
 
 /**
- * Servlet implementation class MemberLogin
+ * Servlet implementation class OwnerLoginServlet
  */
-@WebServlet("/mLogin.me")
-public class MemberLogin extends HttpServlet {
+@WebServlet("/oLogin.ow")
+public class OwnerLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLogin() {
+    public OwnerLoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +31,22 @@ public class MemberLogin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		String memberId = request.getParameter("id");
-		String memberPw = request.getParameter("pw");
+		
+		String ownerId = request.getParameter("id");
+		String ownerPw = request.getParameter("pw");
 		String originPw = (String)request.getAttribute("originPw");
 		
-		Member m = new Member(memberId, memberPw);
+		Owner o = new Owner(ownerId, ownerPw);
+	
+		OwnerService os = new OwnerService();
 		
-		MemberService ms = new MemberService();
-		
-		m = ms.selectMember(m);
+		o = os.selectOwner(o);
 		
 		HttpSession session = request.getSession();
-		System.out.println("member:" + memberId + "+"+ memberPw);
-		session.setAttribute("member", m);
+		
+		System.out.println("owner:" + ownerId + "+"+ ownerPw);
+		
+		session.setAttribute("owner", o);
 		response.sendRedirect("index.jsp");
 	}
 
