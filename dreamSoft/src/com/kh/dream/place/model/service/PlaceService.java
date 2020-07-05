@@ -25,10 +25,8 @@ public class PlaceService {
 		return list;
 	}
 	
-	public Place selectOne(int pno) throws PlaceException {
-		
+	public Place selectOne(int pno) {
 		con = getConnection();
-		
 		Place p = pDAO.selectOne(con, pno);
 		
 		close(con);

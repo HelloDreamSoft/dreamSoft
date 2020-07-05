@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import = "com.kh.dream.place.model.vo.*" %>
+	
+<% Place p = (Place)request.getAttribute("place"); %>
+	
 <%@ include file="../common/header.jsp"%>
 
 <!-- breadcrumb part start-->
@@ -21,13 +24,14 @@
 	<div class="container">
 		<div class="cart_inner">
 			<div class="table-responsive">
-				<form method="post">
+				<form action = "<%= request.getContextPath() %>/pUpdateView.pl" method="post" enctype = "multipart/form-data">
 					<table class="table">
 						<tbody>
 							<tr>
 								<td rowspan="3">
 									<div id="titleImgArea">
-										<img id="titleImg" width="344.8px" height="357.56px">
+										<img src = "<%= request.getContextPath() %>/resources/placeUploadFiles/<%= p.getpImg() %>"
+										      id="titleImg" width="344.8px" height="357.56px">
 									</div>
 									
 								</td>
@@ -36,8 +40,9 @@
 								</td>
 								<td colspan="2">
 									<input type="text" class = "single-input" name = "pName"
-										   placeholder="가게 이름을 등록해주세요" 
+										   placeholder="<%= p.getpName() %>" 
 										   style="width: 100%; height: 40px; border: none;" />
+										   
 								</td>
 							</tr>
 							<tr>
@@ -46,10 +51,9 @@
 								</td>
 								
 								<td colspan = "2">
-									<input type="radio" class = "primary-radi" name="pType" id="양식" />&nbsp;양식 &nbsp;&nbsp;
-									<input type="radio" class = "primary-radi" name="pType" id="양식" />&nbsp;중식 &nbsp;&nbsp;
-									<input type="radio" class = "primary-radi" name="pType" id="양식" />&nbsp;일식 &nbsp;&nbsp;
-									<input type="radio" class = "primary-radi" name="pType" id="양식" />&nbsp;한식 &nbsp;&nbsp; 
+									<input type="radio" class = "primary-radi" name="pType" value = "1" />&nbsp;일식 &nbsp;&nbsp;
+									<input type="radio" class = "primary-radi" name="pType" value = "2"/>&nbsp;중식 &nbsp;&nbsp;
+									<input type="radio" class = "primary-radi" name="pType" value = "3"/>&nbsp;한식 &nbsp;&nbsp;
 									
 								</td>
 							</tr>
@@ -59,7 +63,7 @@
 								</td>
 								<td colspan="2">
 									<input type="text" class = "single-input" name = "pCall"
-										   placeholder="예시) 02-1234-1234"
+										   placeholder="<%= p.getpCall() %>" 
 										   style="width: 100%; height: 40px; border: none;" />
 									
 								</td>
@@ -69,14 +73,9 @@
 									<h5 style="text-align: center;">주소</h5>
 								</td>
 								<td colspan="2">
-								
-									<input type="text" id = "address" class = "single-input" name = "pAddress"
-										   placeholder="가게 주소를 등록해주세요" onclick="addrSearch(); style = "width: 100%; height: 40px; border: none;" /> 
-									
+									<input type="text" name="pAddress" id="address" class = "single-input"
+										   placeholder="<%= p.getpAddress() %>" onclick = "addrSearch();" />
 								</td>
-									<td>
-										<div id="ckZip" class = "btn_1" onclick="addrSearch();">주소 검색</div>
-									</td>
 							</tr>
 							<tr>
 								<td colspan="5">
@@ -91,32 +90,32 @@
 									<label>영업시간</label>
 								</td>
 								<td>
-									<input type="text" name = "pTime" placeholder="예시) 9:00 ~ 18:00" class = "single-input" />
+									<input type="text" name = "pTime" placeholder="<%= p.getpTime() %>" class = "single-input" />
 								</td>
 								
 								<td>
 									<label>브레이크타임</label>
 								</td>
 								<td>
-									<input type="text" name = "pBreaktime" placeholder="예시) 14:00 ~ 16:00" class = "single-input" />
+									<input type="text" name = "pBreaktime" placeholder="<%= p.getpBreaktime() %>" class = "single-input" />
 								</td>
 							</tr>
 							<tr>
 								<!-- 내용입력 -->
-								<td colspan="4"><textarea name = "pContent" class="summernote"></textarea></td>
+								<td colspan="4"><textarea name = "pContent" class="summernote"><%= p.getpContent() %></textarea></td>
 							</tr>
 
 						</tbody>
 					</table>
-					<div class="checkout_btn_inner float-right"
-						style="font-size: 18px;">
-						<a class="genric-btn danger radius e-large"
-							href="<%=request.getContextPath()%>/views/place/placeList.jsp">삭제하기</a>
-						<a class="genric-btn success radius e-large"
-							href="<%=request.getContextPath()%>/views/place/placeList.jsp">등록하기</a>
-						<a class="genric-btn primary radius e-large"
-							href="<%=request.getContextPath()%>/views/place/placeDetail.jsp">취소</a>
+					<div class="checkout_btn_inner float-right" style="font-size: 18px;">
+						<button type = "reset" class="genric-btn success radius e-large">취소하기</a>
+						<button type = "submit" class="genric-btn success radius e-large">등록하기</a>
 					</div>
+					
+			      	<div class="fileArea" id="fileArea">
+			      		<input type="file" id="thumbnailImg1"
+			      			   name="thumbnailImg1" onchange="loadImg(this, 1);" />
+		      		</div>
 				</form>
 				
 			</div>
@@ -134,6 +133,23 @@
 				});
 				
 			}); 
+			
+			function loadImg(value, num){
+				
+				if(value.files && value.files[0])  {
+					
+					var reader = new FileReader();
+					
+					reader.onload = function(e){
+						
+						switch(num) {
+						case 1 : $('#titleImg').attr('src', e.target.result);
+							break;
+						}
+					}
+					reader.readAsDataURL(value.files[0]);
+				}
+			}
 			
 			/* 주소 검색을 위한 스크립트 */ 
  			function addrSearch() {

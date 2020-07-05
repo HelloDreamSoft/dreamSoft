@@ -34,25 +34,23 @@ public class PlaceSelectDetail extends HttpServlet {
 		PlaceService ps = new PlaceService();
 		
 		int pno = Integer.parseInt(request.getParameter("pno")); 
+		Place p = new PlaceService().selectOne(pno);
 		
-		try {
-			
-			Place p = ps.selectOne(pno);
-			
+		String page = "";
+		
+		if(p != null) {
 			request.setAttribute("place", p);
-			request.getRequestDispatcher("views/place/placeDetail.jsp")
-				   .forward(request, response);
+			page = "views/place/placeDetail.jsp";
 			
-		} catch (PlaceException e) {
+		} else {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			
-			request.setAttribute("error-msg", "공지사항 상세보기 실패");
-			request.setAttribute("exception", e);
+			request.setAttribute("error-msg", "Place 상세보기 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp")
 				   .forward(request, response);
-			
 		}
+		
+		request.getRequestDispatcher(page).forward(request, response);
 		
 	}
 

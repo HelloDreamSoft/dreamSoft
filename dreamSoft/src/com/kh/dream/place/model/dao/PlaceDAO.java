@@ -80,7 +80,7 @@ public class PlaceDAO {
 		return list;
 	}
 	
-	public Place selectOne(Connection con, int pno) throws PlaceException {
+	public Place selectOne(Connection con, int pno) {
 		
 		Place p = null;
 		PreparedStatement pstmt = null;
@@ -113,7 +113,8 @@ public class PlaceDAO {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-			throw new PlaceException("DAO에러 : " + e.getMessage());
+			System.out.println("place를 selectOne하던 중 DAO에서 문제 발생.");
+			System.out.println("SQL익셉션에러 : " + e);
 			
 		} finally {
 			close(rset);
