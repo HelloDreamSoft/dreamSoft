@@ -68,9 +68,8 @@ public class PlaceInsertServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		// 오너 로그인이 안되니 일단 임의로 등록해놓음.
-//		Owner o = (Owner)session.getAttribute("owner");
-//		String oId = o.getoId();
-		String oId = "owner01";  // test용 
+		Owner o = (Owner)session.getAttribute("owner");
+		String oId = o.getoId();
 		
 		
 		

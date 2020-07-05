@@ -75,24 +75,13 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<<<<<<< HEAD
 
 	<!-- 주소 부르기위한 api -->
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-=======
->>>>>>> refs/remotes/origin/dev_ming
     
     <!-- 지도 부르기 -->
-<<<<<<< HEAD
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037f9ae8baf28354df2203507cf3111a&libraries=services"></script>
 
-
-    
-    
-=======
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=037f9ae8baf28354df2203507cf3111a"></script>
-
->>>>>>> refs/remotes/origin/dev_ming
 </head>
 <body>
 	<!--::header part start::-->
@@ -163,12 +152,7 @@
         </div>
     </header>
     <!-- Header part end-->
-<<<<<<< HEAD
-    
-=======
 
-
->>>>>>> refs/remotes/origin/dev_ming
 
 <body>
 <div id="ex1" class="modal">
