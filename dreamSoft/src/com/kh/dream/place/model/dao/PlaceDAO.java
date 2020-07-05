@@ -152,7 +152,7 @@ public class PlaceDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("PlaceDAO에러 : pInsert도중 문제 발생함" + e.getMessage());
+			System.out.println("PlaceDAO에러 : pInsert도중 문제 발생함 : " + e.getMessage());
 		} finally {
 			close(pstmt);
 		}

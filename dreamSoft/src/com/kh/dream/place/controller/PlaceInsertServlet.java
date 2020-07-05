@@ -28,6 +28,12 @@ public class PlaceInsertServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html charset=utf-8"); 
+		
+		System.out.println("request getContentType : " + request.getContentType());
+		
+		
 		
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			System.out.println("pInsert.pl : 멀티파트로 전송이 안됐는데?");
@@ -36,8 +42,8 @@ public class PlaceInsertServlet extends HttpServlet {
 		}
 		
 		System.out.println("pInsert.pl : 좋아! 멀티파트로 잘 왔어!");
-		
 		int maxSize = 1024*1024*10;
+		
 		
 		String root = request.getServletContext().getRealPath("/resources");
 		String savePath = root + "/placeUploadFiles/";
@@ -56,12 +62,17 @@ public class PlaceInsertServlet extends HttpServlet {
 		String pBreaktime = mre.getParameter("pBreaktime");
 		String pContent = mre.getParameter("pContent");
 		
-		// 이미지는 잠시 보류 
-		String pImg = mre.getFilesystemName("pImg");
+		String pImg = mre.getFilesystemName("thumbnailImg1");
+		System.out.println("pInsert에서 IMG왔나 확인 : " + pImg);
 		
 		HttpSession session = request.getSession(false);
-		Owner o = (Owner)session.getAttribute("owner");
-		String oId = o.getoId();
+		
+		// 오너 로그인이 안되니 일단 임의로 등록해놓음.
+//		Owner o = (Owner)session.getAttribute("owner");
+//		String oId = o.getoId();
+		String oId = "owner01";  // test용 
+		
+		
 		
 		Place p = new Place(cNo, oId, pImg, pName, pContent, pCall, pAddress, pTime, pBreaktime);
 		
