@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class PageInfo implements Serializable{
 	// 페이지 처리와 관련된 변수를 모두 담는 객체
 	
+	private static final long serialVersionUID = 15577L;
 	private int currentPage;
 	private int listCount;
 	private int limit;

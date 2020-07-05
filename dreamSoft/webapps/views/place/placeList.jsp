@@ -3,7 +3,13 @@
 <%@page import="com.kh.dream.place.model.vo.*, java.util.*" %>
 <%
 	ArrayList<Place> list = (ArrayList<Place>) request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	
+	int listCount = pi.getListCount();
+	int currentPage = pi.getCurrentPage();
+	int maxPage = pi.getMaxPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
 %>
 
 <%@ include file="../common/header.jsp"%>
@@ -43,17 +49,23 @@
 							</div>
 							<div class="select_option_dropdown">
 								<p>
-									<a href="#">한식</a>
+									<a href="<%=request.getContextPath()%>/pList.pl?cat='3'&currentPage=<%=currentPage + 1%>&keyword=<%= request.getParameter("keyword") %>'">한식</a>
 								</p>
 								<p>
-									<a href="#">중식</a>
+									<a href="<%=request.getContextPath()%>/pList.pl?cat='2'&currentPage=<%=currentPage + 1%>&keyword=<%= request.getParameter("keyword") %>'">중식</a>
 								</p>
 								<p>
-									<a href="#">일식</a>
+									<a href="<%=request.getContextPath()%>/pList.pl?cat='1'&currentPage=<%=currentPage + 1%>&keyword=<%= request.getParameter("keyword") %>'">일식</a>
 								</p>
 								<p>
-									<a href="#">양식</a>
+									<a href="<%=request.getContextPath()%>/pList.pl?cat='4'&currentPage=<%=currentPage + 1%>&keyword=<%= request.getParameter("keyword") %>'">양식</a>
 								</p>
+								<!-- <select name="category" id="category" style="display: none;">
+									<option value="1"></option>
+									<option value="2"></option>
+									<option value="3"></option>
+									<option value="4"></option>
+								</select> -->
 							</div>
 						</div>
 					</div>
@@ -86,27 +98,50 @@
 					
 						<!-- 페이징 처리 시작 -->
 						<div class="blog_left_sidebar">
-	                        <nav class="blog-pagination justify-content-center d-flex">
-	                            <ul class="pagination">
-	                                <li class="page-item">
-	                                    <a href="#" class="page-link" aria-label="Previous">
-	                                        <i class="ti-angle-left"></i>
-	                                    </a>
-	                                </li>
-	                                <li class="page-item">
-	                                    <a href="#" class="page-link">1</a>
-	                                </li>
-	                                <li class="page-item active">
-	                                    <a href="#" class="page-link">2</a>
-	                                </li>
-	                                <li class="page-item">
-	                                    <a href="#" class="page-link" aria-label="Next">
-	                                        <i class="ti-angle-right"></i>
-	                                    </a>
-	                                </li>
-	                            </ul>
-	                        </nav>
-                    	</div>
+							<nav class="blog-pagination justify-content-center d-flex">
+								<ul class="pagination" id="paging">
+									<li class="page-item">
+										<% if(currentPage <= 1) { %>
+										<a onclick="nothing(this);" id="nothing" class="page-link" aria-label="Previous">
+											<i class="ti-angle-left"></i>
+										</a>
+										<% } else { %>
+										<a onclick="location.href='<%=request.getContextPath()%>/pList.pl?currentPage=<%=currentPage - 1%>&keyword=<%= request.getParameter("keyword") %>'" id="goPrevious"  class="page-link" aria-label="Previous">
+											<i class="ti-angle-left"></i>
+										</a>
+										<% } %>
+									</li>
+									
+									<% 
+										for(int i = startPage; i <= endPage; i++) {
+											if(i == currentPage){
+									%>
+									<li class="page-item">
+										<a onclick="nothing(this);" class="page-link"><%=i %></a>
+									</li>
+									<%      } else { %>
+									<li class="page-item">
+										<a onclick="location.href='<%=request.getContextPath()%>/pList.pl?currentPage=<%=i%>&keyword=<%= request.getParameter("keyword") %>'" class="page-link"><%=i %></a>						
+									</li>
+									<% 		}
+										}
+									%>
+									<% if(currentPage >= maxPage) { %>
+									<li class="page-item">
+										<a onclick="nothing(this);" class="page-link" aria-label="Next">
+											<i class="ti-angle-right"></i>
+										</a>
+									</li>
+									<% } else { %>
+									<li class="page-item">
+										<a onclick="location.href='<%=request.getContextPath()%>/pList.pl?currentPage=<%=currentPage + 1%>&keyword=<%= request.getParameter("keyword") %>'" class="page-link" aria-label="Next">
+											<i class="ti-angle-right"></i>
+										</a>
+									</li>
+									<% } %>
+								</ul>
+							</nav>
+						</div>
                     	<!-- 페이징 처리 끝 -->
 					</div>
 				</div>
@@ -119,6 +154,21 @@
 	function goPlaceView(){
 		location.href="<%=request.getContextPath()%>/pList.pl";
 	}
+	
+	function nothing(){
+		$(this).unbind('click', false).mouseenter(function(){
+			$(this).css({"background":"lightpink", "cursor":"pointer"});
+		}).mouseout(function(){
+			$(this).css({"background":"none"});
+		});
+		
+	}
+	
+	function search(){
+		alert($("#keyword").val());
+		location.href="<%=request.getContextPath()%>/pList.pl?keyword=" + $("#keyword").val();
+	}
+	
 </script>
 
 <%@ include file="../common/footer.jsp"%>

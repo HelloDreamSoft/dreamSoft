@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.dream.place.exception.PlaceException;
 import com.kh.dream.place.model.service.PlaceService;
 import com.kh.dream.place.model.vo.Place;
-import com.kh.dream.notice.model.vo.PageInfo;
+import com.kh.dream.place.model.vo.PageInfo;
 
 /**
  * Servlet implementation class PlaceListServlet
@@ -45,7 +45,9 @@ public class PlaceListServlet extends HttpServlet {
 		int maxPage;
 		int currentPage;
 		int limit;
-
+		
+		String category = null;
+		
 		currentPage = 1;
 
 		limit = 10;
@@ -53,10 +55,15 @@ public class PlaceListServlet extends HttpServlet {
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currnetPage"));
 		}
+		if(request.getParameter("cat") != null) {
+			category = request.getParameter("cat");
+		}
 		
 		System.out.println("keyword : " + keyword);
+		System.out.println("category : " + category);
+		
 		try {
-			int listCount = pl.getListCount();
+			int listCount = pl.getListCount(category, keyword);
 
 			maxPage = (int)((double)listCount / limit + 0.9);
 
@@ -74,12 +81,12 @@ public class PlaceListServlet extends HttpServlet {
 
 			System.out.println("총 게시글 수 : " + listCount);
 
-			list = pl.placeList();
+			list = pl.placeList(category, keyword, currentPage, limit);
 
-//			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 			request.setAttribute("list", list);
-//			request.setAttribute("pi", pi);
+			request.setAttribute("pi", pi);
 
 			request.getRequestDispatcher("views/place/placeList.jsp")
 				   .forward(request, response);

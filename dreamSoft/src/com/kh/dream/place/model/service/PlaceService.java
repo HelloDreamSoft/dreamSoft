@@ -14,10 +14,25 @@ public class PlaceService {
 	private Connection con;
 	private PlaceDAO pDAO = new PlaceDAO();
 	
-	public ArrayList<Place> placeList() throws PlaceException {
+	public ArrayList<Place> placeList(String category, String keyword, int currentPage, int limit) throws PlaceException {
 		
 		con = getConnection();
 		ArrayList<Place> list = pDAO.placeList(con);
+		
+		if(keyword != null && (keyword.length() > 0 && !keyword.contentEquals("null"))
+				&& category != null && (category.length() > 0 && !category.contentEquals("null"))){
+			list = pDAO.searchList(con, category, keyword, currentPage, limit);
+			
+		} else if(keyword != null && (keyword.length() > 0 && !keyword.contentEquals("null"))
+				&& category != null && (category.length() > 0 && !category.contentEquals("null"))) {
+			list = pDAO.searchKeyList(con, keyword, currentPage, limit);
+			
+		} else if(keyword == null && category != null && (category.length() > 0 && !category.contentEquals("null"))) {
+			list = pDAO.searchCatList(con, category, currentPage, limit);
+			
+		} else {
+			list = pDAO.selectList(con, currentPage, limit);
+		}
 		
 		close(con);
 		
@@ -78,15 +93,35 @@ public class PlaceService {
 		return result;
 	}
 
-	public int getListCount() throws PlaceException{
+	public int getListCount(String category, String keyword) throws PlaceException{
 		
 		con = getConnection();
 		
-		int result = pDAO.getListCount(con);
+		int result = 0;
+		
+		if(keyword != null && (keyword.length() > 0 && !keyword.contentEquals("null"))
+				&& category != null && (category.length() > 0 && !category.contentEquals("null"))){
+			result = pDAO.getSearchListCount(con, category, keyword);
+			
+		} else if(keyword != null && (keyword.length() > 0 && !keyword.contentEquals("null"))
+				&& category != null && (category.length() > 0 && !category.contentEquals("null"))) {
+			result = pDAO.getKeyListCount(con, keyword);
+			
+		} else if(keyword == null && category != null && (category.length() > 0 && !category.contentEquals("null"))) {
+			result = pDAO.getCatListCount(con, category);
+			
+		} else {
+			result = pDAO.getListCount(con);
+		}
+		
+		
 		
 		close(con);
 		
 		return result;
+		
+		
+		
 	}
 
 	public ArrayList<Place> selectList(int currentPage, int limit) throws PlaceException {

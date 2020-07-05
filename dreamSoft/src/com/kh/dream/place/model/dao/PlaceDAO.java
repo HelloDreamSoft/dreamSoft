@@ -37,7 +37,7 @@ public class PlaceDAO {
 	}
 	
 	public ArrayList<Place> placeList(Connection con) throws PlaceException {
-		
+		// 레벨 1
 		ArrayList<Place> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -218,7 +218,205 @@ public class PlaceDAO {
 		
 	}
 	
+	public ArrayList<Place> selectList(Connection con, int currentPage, int limit) throws PlaceException {
+		// 카테고리, 검색 없는 페이징처리
+		ArrayList<Place> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit -1;
+			
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Place>();
+			
+			while(rset.next()) {
+				Place p = new Place();
+				
+				p.setpNo(rset.getInt("PNO"));
+				p.setcName(rset.getString("CNAME"));
+				p.setoId(rset.getString("OID"));
+				p.setpImg(rset.getString("PIMG"));
+				p.setpName(rset.getString("PNAME"));
+				p.setpCall(rset.getString("PCALL"));
+				p.setpAddress(rset.getString("PADDRESS"));
+				
+				list.add(p);
+			}
+		
+		} catch(SQLException e) {
+			  e.printStackTrace();
+			throw new PlaceException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+				
+		return list;
+	}
+
+	public ArrayList<Place> searchList(Connection con, String category, String keyword, int currentPage, int limit) throws PlaceException {
+		// 카테고리, 검색 있는 페이징 처리
+		ArrayList<Place> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			int cat = Integer.parseInt(category);
+			
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, cat);
+			pstmt.setInt(3, endRow);
+			pstmt.setInt(4, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Place>();
+			
+			while(rset.next()) {
+				Place p = new Place();
+				
+				p.setpNo(rset.getInt("PNO"));
+				p.setcName(rset.getString("CNAME"));
+				p.setoId(rset.getString("OID"));
+				p.setpImg(rset.getString("PIMG"));
+				p.setpName(rset.getString("PNAME"));
+				p.setpCall(rset.getString("PCALL"));
+				p.setpAddress(rset.getString("PADDRESS"));
+				
+				list.add(p);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new PlaceException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<Place> searchKeyList(Connection con, String keyword, int currentPage, int limit) throws PlaceException {
+		// 검색 있는 페이징 처리
+		ArrayList<Place> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchKeyList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Place>();
+			
+			while(rset.next()) {
+				Place p = new Place();
+				
+				p.setpNo(rset.getInt("PNO"));
+				p.setcName(rset.getString("CNAME"));
+				p.setoId(rset.getString("OID"));
+				p.setpImg(rset.getString("PIMG"));
+				p.setpName(rset.getString("PNAME"));
+				p.setpCall(rset.getString("PCALL"));
+				p.setpAddress(rset.getString("PADDRESS"));
+				
+				list.add(p);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new PlaceException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<Place> searchCatList(Connection con, String category, int currentPage, int limit) throws PlaceException {
+		// 카테고리 있는 페이징 처리
+		ArrayList<Place> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchCatList");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			int cat = Integer.parseInt(category);
+			
+			pstmt.setInt(1, cat);
+			pstmt.setInt(2, endRow);
+			pstmt.setInt(3, startRow);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Place>();
+			
+			while(rset.next()) {
+				Place p = new Place();
+				
+				p.setpNo(rset.getInt("PNO"));
+				p.setcName(rset.getString("CNAME"));
+				p.setoId(rset.getString("OID"));
+				p.setpImg(rset.getString("PIMG"));
+				p.setpName(rset.getString("PNAME"));
+				p.setpCall(rset.getString("PCALL"));
+				p.setpAddress(rset.getString("PADDRESS"));
+				
+				list.add(p);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			throw new PlaceException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+
 	public int getListCount(Connection con) throws PlaceException {
+		// 검색, 카테고리 없는 페이지 수 카운트
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -248,51 +446,105 @@ public class PlaceDAO {
 	}
 
 	
-
-	public ArrayList<Place> selectList(Connection con, int currentPage, int limit) throws PlaceException {
+	public int getSearchListCount(Connection con, String category, String keyword) throws PlaceException {
+		// 검색, 카테고리 있는 페이지 수 카운트
 		
-		ArrayList<Place> list = null;
-		
+		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectList");
+		
+		String sql = prop.getProperty("getSearchListCount");
 		
 		try {
 			
 			pstmt = con.prepareStatement(sql);
 			
-			int startRow = (currentPage - 1) * limit + 1;
-			int endRow = startRow + limit -1;
+			int cat = Integer.parseInt(category);
+			
+			pstmt.setString(1, keyword);
+			pstmt.setInt(2, cat);
 			
 			rset = pstmt.executeQuery();
 			
-			list = new ArrayList<Place>();
-			
-			while(rset.next()) {
-				Place p = new Place();
-				
-				p.setpNo(rset.getInt("PNO"));
-				p.setcNo(rset.getInt("CNO"));
-				p.setoId(rset.getString("OID"));
-				p.setpImg(rset.getString("PIMG"));
-				p.setpName(rset.getString("PNAME"));
-				p.setpContent(rset.getString("PCONTENT"));
-				p.setpCall(rset.getString("PCALL"));
-				p.setpAddress(rset.getString("PADDRESS"));
-				p.setpTime(rset.getString("PTIME"));
-				p.setpBreaktime(rset.getString("PBREAKTIME"));
-				
-				list.add(p);
+			if(rset.next()) {
+				result = rset.getInt(1);
 			}
-		
-		} catch(SQLException e) {
-			  e.printStackTrace();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
 			throw new PlaceException("DAO에러 : " + e.getMessage());
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-				
-		return list;
+		
+		return result;
 	}
+
+	public int getKeyListCount(Connection con, String keyword) throws PlaceException {
+		// 검색, 카테고리 있는 페이지 수 카운트
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getKeyListCount");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, keyword);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new PlaceException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int getCatListCount(Connection con, String category) throws PlaceException {
+		// 검색, 카테고리 있는 페이지 수 카운트
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("getCatListCount");
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			
+			int cat = Integer.parseInt(category);
+			
+			pstmt.setInt(2, cat);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			throw new PlaceException("DAO에러 : " + e.getMessage());
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
