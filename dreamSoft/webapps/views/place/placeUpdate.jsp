@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="cart_inner">
 			<div class="table-responsive">
-				<form action = "<%= request.getContextPath() %>/pUpdateView.pl" method="post" enctype = "multipart/form-data">
+				<form action = "<%= request.getContextPath() %>/pUpdate.pl" method="post" enctype = "multipart/form-data">
 					<table class="table">
 						<tbody>
 							<tr>
@@ -37,6 +37,7 @@
 								</td>
 								<td>
 									<h5 style="text-align: center;">가게 이름</h5>
+									<input type="hidden" name="pno" value="<%=p.getpNo()%>">
 								</td>
 								<td colspan="2">
 									<input type="text" class = "single-input" name = "pName"

@@ -87,7 +87,6 @@ public class PlaceDAO {
 		try {
 			
 			pstmt = con.prepareStatement(sql);
-			
 			pstmt.setInt(1, pno);
 			
 			rset = pstmt.executeQuery();
@@ -134,14 +133,14 @@ public class PlaceDAO {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, p.getcNo());
-			pstmt.setString(2, p.getoId());
-			pstmt.setString(3, p.getpImg());
-			pstmt.setString(4, p.getpName());
-			pstmt.setString(5, p.getpContent());
-			pstmt.setString(6, p.getpCall());
-			pstmt.setString(7, p.getpAddress());
-			pstmt.setString(8, p.getpTime());
-			pstmt.setString(9, p.getpBreaktime());
+			pstmt.setString(2, p.getpImg());
+			pstmt.setString(3, p.getpName());
+			pstmt.setString(4, p.getpCall());
+			pstmt.setString(5, p.getpAddress());
+			pstmt.setString(6, p.getpTime());
+			pstmt.setString(7, p.getpBreaktime());
+			pstmt.setString(8, p.getpContent());
+			pstmt.setInt(9, p.getpNo());
 			
 			
 			
@@ -158,33 +157,30 @@ public class PlaceDAO {
 		return result;
 	}
 	
-	public int updatePlace(Connection con, Place p) throws PlaceException {
+	public int updatePlace(Connection con, Place p) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateNotice");
 		
 		try {
-			
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, p.getpNo());
-			pstmt.setInt(2, p.getcNo());
-			pstmt.setString(3, p.getoId());
-			pstmt.setString(4, p.getpImg());
-			pstmt.setString(5, p.getpName());
-			pstmt.setString(6, p.getpContent());
-			pstmt.setString(7, p.getpCall());
-			pstmt.setString(8, p.getpAddress());
-			pstmt.setString(8, p.getpTime());
-			pstmt.setString(8, p.getpBreaktime());
+			pstmt.setString(1, p.getpImg());
+			pstmt.setString(2, p.getpName());
+			pstmt.setString(3, p.getpCall());
+			pstmt.setString(4, p.getpAddress());
+			pstmt.setString(5, p.getpTime());
+			pstmt.setString(6, p.getpBreaktime());
+			pstmt.setString(7, p.getpContent());
+			pstmt.setInt(8, p.getcNo());
+			pstmt.setInt(9, p.getpNo());
 			
 			result = pstmt.executeUpdate();
 			System.out.println("result 나와요? : " + result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new PlaceException("DAO에러 : " + e.getMessage());
 		} finally {
 			close(pstmt);
 		}

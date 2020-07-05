@@ -6,6 +6,8 @@
 	
 %>
 
+request.getSession(false);
+
 <%@ include file="../common/header.jsp"%>
 
 <!-- breadcrumb part start-->
@@ -64,11 +66,12 @@
 					<div class="row">
 						<div class="col-lg-6 col-sm-6">
 							<% for(Place p : list) { %>
-							<div class="single_product_item" onclick="goPlaceView();">
+							<div class="single_product_item" onclick="goPlaceView(this);">
+								<input type="hidden" id = "thisPno" value="<%= p.getpNo() %>"/>
 								<img src="<%=p.getpImg()%>" alt="#"
 									class="img-fluid">
 								<h3>
-									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp"><%=p.getpName()%> / <b>★3.5</b> </a>
+									<%=p.getpName()%> / <b>★3.5</b> 
 								</h3>
 								<p><%=p.getpAddress()%> / <%=p.getcName() %></p>
 							</div>
@@ -116,8 +119,9 @@
 </section>
 <!-- product list part end-->
 <script>
-	function goPlaceView(){
-		location.href="<%=request.getContextPath()%>/pList.pl";
+	function goPlaceView(obj){
+		var pno = $(obj).find("input").val();
+		location.href="<%=request.getContextPath()%>/selectOne.pl?pno=" + pno;
 	}
 </script>
 

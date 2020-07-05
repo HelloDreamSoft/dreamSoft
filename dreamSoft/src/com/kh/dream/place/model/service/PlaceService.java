@@ -47,7 +47,7 @@ public class PlaceService {
 		return result;
 	}
 	
-	public int updatePlace(Place p) throws PlaceException {
+	public int updatePlace(Place p) {
 		
 		con = getConnection();
 		int result = pDAO.updatePlace(con, p);
