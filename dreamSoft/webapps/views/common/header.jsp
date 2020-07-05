@@ -117,13 +117,15 @@
                                         	회원관리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    	<% if ((m != null)||(o!=null)) {%>
-                                    	<a class="dropdown-item" id="logout">로그아웃</a>
-                                    	<%}else {%>
-                                    	<a class="dropdown-item" id="login" >로그인</a>
-                                    	<%}%>
+                                    	<% if ((m != null)) {%>
                                     	<a class="dropdown-item" href="<%=request.getContextPath()%>/views/member/memberDetail.jsp">일반회원 정보 수정</a>
+                                    	<a class="dropdown-item" id="logout">로그아웃</a>
+                                    	<%}else if((o !=null)){%>
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/views/owner/ownerDetail.jsp">사업자 정보 수정</a>
+                                    	<a class="dropdown-item" id="logout">로그아웃</a>              
+                                    	<%} else {%>
+                                    	<a class="dropdown-item" id="login" >로그인</a>
+                                    	<%} %>
                                     </div>
                                 </li>
                                <% if ((m != null)||(o!=null))  {%><%} else { %>
@@ -202,21 +204,23 @@
 			$('.modal').modal('hide');
 		});
 	});
-	
 	$(function(){
 		$("#logout").click(function(){
-			location.href ="/dream/mLogout.me";
+			location.href="/dream/mLogout.me";
 		});
 	});
+	
 	$(function(){
-		$(".molongin").click(function (){
-			if($("input[name='radio']:checked").val() == 1){
-				$("form").attr("action","/dream/mLogin.me");
-			}else if($("input[name='radio']:checked").val() == 2){
-				$("form").attr("action","/dream/oLogin.ow");
-			}
-		});
-	});
+	      $(".molongin").click(function (){
+	         if($("input[type='radio']:checked").val() == 1){
+	            $("form").attr("action","/dream/mLogin.me");
+	         }else if($("input[type='radio']:checked").val() == 2){
+	            $("form").attr("action","/dream/oLogin.ow");
+	         } else {
+	            alert("로그인 기준이 입력되지 않았습니다.");
+	         }
+	      });
+	   });
 	
 	
 </script>
