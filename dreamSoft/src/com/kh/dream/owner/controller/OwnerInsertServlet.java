@@ -43,7 +43,7 @@ public class OwnerInsertServlet extends HttpServlet {
 		String savePath= root +"resources/oregimgUploadFiles";
 		
 		MultipartRequest mre = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
-	
+		
 		String oId = mre.getParameter("id");
 		String oPw = mre.getParameter("pw");
 		String oName= mre.getParameter("name");

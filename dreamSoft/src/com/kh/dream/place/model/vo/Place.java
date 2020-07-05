@@ -2,7 +2,7 @@ package com.kh.dream.place.model.vo;
 
 import java.io.Serializable;
 
-public class Place implements Serializable{
+public class Place extends Category implements Serializable{
 	
 	private static final long serialVersionUID = 1452L;
 	
@@ -21,6 +21,31 @@ public class Place implements Serializable{
 		super();
 	}
 	
+	public Place(String cName, int cNo) {
+		super(cName, cNo);
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Place(String cName) {
+		super(cName);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public Place(String cName, String oId, String pImg, String pName, String pContent, String pCall, String pAddress,
+			String pTime, String pBreaktime) {
+		super(cName);
+		this.oId = oId;
+		this.pImg = pImg;
+		this.pName = pName;
+		this.pContent = pContent;
+		this.pCall = pCall;
+		this.pAddress = pAddress;
+		this.pTime = pTime;
+		this.pBreaktime = pBreaktime;
+	}
+
 	public Place(int pNo, int cNo, String oId, String pImg, String pName, String pContent, String pCall,
 			String pAddress, String pTime, String pBreaktime) {
 		super();
@@ -37,7 +62,18 @@ public class Place implements Serializable{
 	}
 	
 	
-	
+
+	public Place(int cNo, String oId, String pImg, String pName, String pContent, String pCall, String pAddress) {
+		super();
+		this.cNo = cNo;
+		this.oId = oId;
+		this.pImg = pImg;
+		this.pName = pName;
+		this.pContent = pContent;
+		this.pCall = pCall;
+		this.pAddress = pAddress;
+	}
+
 	public Place(int cNo, String oId, String pImg, String pName, String pContent, String pCall, String pAddress,
 			String pTime, String pBreaktime) {
 		super();

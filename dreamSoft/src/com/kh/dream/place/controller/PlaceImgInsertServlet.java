@@ -108,7 +108,8 @@ public class PlaceImgInsertServlet extends HttpServlet {
 			}
 			
 			PrintWriter out = response.getWriter();
-			out.print("http://localhost:8088/dream/resources/noticeUploadFiles/desc/" + renameFileName);
+
+			out.print("http://localhost:8088/dream/resources/placeUploadFiles/desc/" + renameFileName);
 			out.flush();
 			out.close();
 		}

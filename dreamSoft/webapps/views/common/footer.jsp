@@ -14,8 +14,8 @@
                             </div>
                             <div class="footer_menu_item">
                                 <a href="<%= request.getContextPath() %>/index.jsp">Home</a>
-                                <a href="<%=request.getContextPath()%>/views/place/placeList.jsp">PLACE</a>
-                                <a href="<%=request.getContextPath()%>/views/notice/noticeList.jsp">공지사항</a>
+                                <a href="<%=request.getContextPath()%>/pList.pl">PLACE</a>
+                                <a href="<%=request.getContextPath()%>/nList.no">공지사항</a>
                                 <a href="<%=request.getContextPath()%>/views/member/memberJoin.jsp">회원가입</a>
                                 <a href="<%= request.getContextPath() %>/views/admin/adminOwnerCheck.jsp">관리자</a>
                             </div>
@@ -73,6 +73,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="<%=request.getContextPath()%>/resources/js/jquery.form.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/mail-script.js"></script>
+    
     <!-- custom js -->
     <script src="<%=request.getContextPath()%>/resources/js/custom.js"></script>
     

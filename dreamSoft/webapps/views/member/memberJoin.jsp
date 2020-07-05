@@ -5,10 +5,13 @@
 
 <%@ include file="../common/header.jsp" %> 
 
+<section class="cart_area section_padding">
 <div class="whole-wrap">
 	<div class="container box_1170">
 		<div class="row">
-			<div class="col-lg-12 col-md-12" style = "padding-left:400px; padding-right:400px;">
+			<div class="col-lg-3 col-md-3">
+			</div>
+			<div class="col-lg-6 col-md-6">
 				<h3 class="mb-30">회원 가입</h3>
 				<form action="/dream/mJoin.me" id="userInfo" name = "userInfo" method="post">
 					<div class="mt-10">
@@ -70,7 +73,7 @@
 		</div>
 	</div>
 </div> 
-
+</section>
 <!-- <script>
 	$('.id').change(function(){
 		$('#id_check_sucess').hide();

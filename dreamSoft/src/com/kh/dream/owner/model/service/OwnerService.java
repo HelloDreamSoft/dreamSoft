@@ -19,4 +19,11 @@ public class OwnerService {
 		return result;
 	}
 
+	public Owner selectOwner(Owner o) {
+		con = getConnection();
+		Owner result = oDAO.selectOwner(con, o);
+		close(con);
+		return result;
+	}
+
 }

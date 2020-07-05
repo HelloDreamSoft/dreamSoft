@@ -1,6 +1,5 @@
 package com.kh.dream.place.model.service;
 
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.util.ArrayList;
 

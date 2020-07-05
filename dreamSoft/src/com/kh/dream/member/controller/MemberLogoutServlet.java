@@ -1,7 +1,6 @@
 package com.kh.dream.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.dream.member.model.service.MemberService;
-import com.kh.dream.member.model.vo.Member;
-
 /**
- * Servlet implementation class MemberLogin
+ * Servlet implementation class MemberLogoutServlet
  */
-@WebServlet("/mLogin.me")
-public class MemberLogin extends HttpServlet {
+@WebServlet("/mLogout.me")
+public class MemberLogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLogin() {
+    public MemberLogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +28,17 @@ public class MemberLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String memberId = request.getParameter("id");
-		String memberPw = request.getParameter("pw");
-		String originPw = (String)request.getAttribute("originPw");
+		HttpSession session = request.getSession(false);
 		
-		Member m = new Member(memberId, memberPw);
+		if(session != null) {
+			System.out.println("로그아웃");
+			session.invalidate(); 
+		}
 		
-		MemberService ms = new MemberService();
-		
-		m = ms.selectMember(m);
-		
-		HttpSession session = request.getSession();
-		System.out.println("member:" + memberId + "+"+ memberPw);
-		session.setAttribute("member", m);
 		response.sendRedirect("index.jsp");
 	}
+
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -39,6 +39,7 @@ public class PlaceListServlet extends HttpServlet {
 		ArrayList<Place> list = new ArrayList<Place>();
 		PlaceService pl = new PlaceService();
 
+		String keyword = request.getParameter("keyword");
 		int startPage;
 		int endPage;
 		int maxPage;
@@ -52,6 +53,8 @@ public class PlaceListServlet extends HttpServlet {
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currnetPage"));
 		}
+		
+		System.out.println("keyword : " + keyword);
 		try {
 			int listCount = pl.getListCount();
 
@@ -67,16 +70,16 @@ public class PlaceListServlet extends HttpServlet {
 
 			// ---------- 페이지 처리는 끝
 
-			list = pl.selectList(currentPage, limit);
+//			list = pl.selectList(currentPage, limit);
 
 			System.out.println("총 게시글 수 : " + listCount);
 
 			list = pl.placeList();
 
-			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
+//			PageInfo pi = new PageInfo(currentPage, listCount, limit, maxPage, startPage, endPage);
 
 			request.setAttribute("list", list);
-			request.setAttribute("pi", pi);
+//			request.setAttribute("pi", pi);
 
 			request.getRequestDispatcher("views/place/placeList.jsp")
 				   .forward(request, response);

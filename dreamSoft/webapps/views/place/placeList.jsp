@@ -3,13 +3,6 @@
 <%@page import="com.kh.dream.place.model.vo.*, java.util.*" %>
 <%
 	ArrayList<Place> list = (ArrayList<Place>) request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	
-	int listCount = pi.getListCount();
-	int currentPage = pi.getCurrentPage();
-	int maxPage = pi.getMaxPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
 	
 %>
 
@@ -37,10 +30,11 @@
 				<div class="product_sidebar">
 					<div class="single_sedebar">
 						<form action="#">
-							<input type="text" name="#" placeholder="Search keyword">
+							<input type="text" name="keyword" placeholder="Search keyword">
 							<i class="ti-search"></i>
 						</form>
 					</div>
+					
 					<div class="single_sedebar">
 						<div class="select_option">
 							<div class="select_option_list">
@@ -69,17 +63,16 @@
 				<div class="product_list">
 					<div class="row">
 						<div class="col-lg-6 col-sm-6">
-							<div class="single_product_item">
-								<% for(Place p : list) { %>
-								<tr onclick="goPlaceView();"> <!-- 의의의읭 -->
-								<img src="<%=request.getContextPath()%>/resources/img/product/product_list_1.png" alt="#"
+							<% for(Place p : list) { %>
+							<div class="single_product_item" onclick="goPlaceView();">
+								<img src="<%=p.getpImg()%>" alt="#"
 									class="img-fluid">
 								<h3>
 									<a href="<%=request.getContextPath()%>/views/place/placeDetail.jsp"><%=p.getpName()%> / <b>★3.5</b> </a>
 								</h3>
-								<p><%=p.getpAddress()%> / 음식종류</p>
-								<% } %>
+								<p><%=p.getpAddress()%> / <%=p.getcName() %></p>
 							</div>
+							<% } %>
 						</div>
 						
 						
@@ -122,5 +115,10 @@
 	</div>
 </section>
 <!-- product list part end-->
+<script>
+	function goPlaceView(){
+		location.href="<%=request.getContextPath()%>/pList.pl";
+	}
+</script>
 
 <%@ include file="../common/footer.jsp"%>

@@ -103,9 +103,12 @@
 
 						</tbody>
 					</table>
-					<div class="checkout_btn_inner float-right" style="font-size: 18px;">
-						<button type = "reset" class="genric-btn success radius e-large">취소하기</a>
-						<button type = "submit" class="genric-btn success radius e-large">등록하기</a>
+
+					<div class="checkout_btn_inner float-right">
+						<a class="btn_1"
+							href="<%=request.getContextPath()%>/views/place/placeList.jsp">등록완료</a>
+						<a class="btn_1 checkout_btn_1"
+							href="<%=request.getContextPath()%>/views/place/placeList.jsp">목록으로 가기</a>
 					</div>
 					
 			      	<div class="fileArea" id="fileArea">
@@ -158,6 +161,7 @@
 		                var fullAddr = ''; // 최종 주소 변수
 		                var extraAddr = ''; // 조합형 주소 변수
 
+<<<<<<< HEAD
 		                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 		                    fullAddr = data.roadAddress;
@@ -277,6 +281,57 @@
 	</script>
 	
 
+=======
+<script>
+	var check = $('.summernote').summernote({
+		  height : 600 // 에디터 높이
+		, minHeight : null // 최소 높이
+		, maxHeight : null // 최대 높이
+		, focus : true  // 에디터 로딩후 포커스를 맞출지 여부
+		, lang : "ko-KR" // 한글 설정
+		, placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
+		, toolbar: [
+	      // [groupName, [list of button]]
+	      ['style', ['style']],
+	      ['font', ['strikethrough', 'bold', 'underline', 'clear']],
+	      ['Font Style', ['fontname']],
+	      ['fontsize', ['fontsize']],
+	      ['color', ['color']],
+	      ['para', ['ul', 'ol', 'paragraph']],
+	      ['table', ['table']],
+	      ['height', ['height']],
+	      ['insert', ['link', 'picture', 'video']],
+	      ['view', ['fullscreen', 'codeview', 'help']]
+	   ], callbacks : {
+			onImageUpload : function(files, editor,
+					welEditorble) {
+				data = new FormData();
+				data.append("file", files[0]);
+				var $note = $(this);
+				
+				$.ajax({
+					data : data,
+					type : "post",
+					url : '/dream/pImgInsert.pl', // servlet url
+					cache : false,
+					contentType : false,
+					processData : false,
+					success : function(fileUrl) {
+						check.summernote('insertImage', fileUrl);
+						alert("이미지 등록 성공!");
+					},
+					error : function(request, status, error) {
+						alert("code:" + request.status + "\n"
+								+ "message:"
+								+ request.responseText + "\n"
+								+ "error:" + error);
+					}
+				});
+			}
+		}
+	});
+</script>
+>>>>>>> refs/remotes/origin/dev_ming
 
 
 <%@ include file="../common/footer.jsp"%>
