@@ -22,7 +22,7 @@ public static Connection getConnection() {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			con = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:xe",
+					"jdbc:oracle:thin:@localhost:49161:xe",
 					"DREAMSOFT", "DREAMSOFT");
 			
 			

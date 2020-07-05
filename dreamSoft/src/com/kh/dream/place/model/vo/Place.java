@@ -36,6 +36,22 @@ public class Place implements Serializable{
 		this.pBreaktime = pBreaktime;
 	}
 	
+	
+	
+	public Place(int cNo, String oId, String pImg, String pName, String pContent, String pCall, String pAddress,
+			String pTime, String pBreaktime) {
+		super();
+		this.cNo = cNo;
+		this.oId = oId;
+		this.pImg = pImg;
+		this.pName = pName;
+		this.pContent = pContent;
+		this.pCall = pCall;
+		this.pAddress = pAddress;
+		this.pTime = pTime;
+		this.pBreaktime = pBreaktime;
+	}
+
 	public int getpNo() {
 		return pNo;
 	}

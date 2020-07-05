@@ -43,19 +43,20 @@ public class MemberUpdateServlet extends HttpServlet {
 		
 		MemberService ms = new MemberService();
 		
-		try {
+//		try {
 			ms.updateMember(m);
 			System.out.println("mUpdate서블릿에서 회원정보 수정 완료!");
 			response.sendRedirect("index.jsp");
 			
-		} catch (MemberException e) {
-			e.printStackTrace();
-			
-			System.out.println("회원정보 수정 중 에러 발생.");
-			request.setAttribute("exception", e);
-			
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}
+//		} 
+//		catch (MemberException e) {
+//			e.printStackTrace();
+//			
+//			System.out.println("회원정보 수정 중 에러 발생.");
+//			request.setAttribute("exception", e);
+//			
+//			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+//		}
 		
 		
 		

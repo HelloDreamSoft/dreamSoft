@@ -27,4 +27,8 @@ public class MemberService {
 		return result;
 	}
 
+	public void updateMember(Member m) {
+		
+	}
+
 }

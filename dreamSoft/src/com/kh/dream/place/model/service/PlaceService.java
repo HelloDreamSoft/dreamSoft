@@ -36,12 +36,11 @@ public class PlaceService {
 		return p;
 	}
 	
-	public int insertPlace(Place p) throws PlaceException {
+	public int insertPlace(Place p){
 		
 		con = getConnection();
 		int result = pDAO.insertPlace(con, p);
 		
-		System.out.println("서비스입니다 : " + result);
 		
 		if(result > 0) commit(con);
 		else rollback(con);

@@ -19,7 +19,6 @@ public class PlaceDAO {
 	
 	private Properties prop;
 	public PlaceDAO() {
-	
 		prop = new Properties();
 		
 		String filePath = PlaceDAO.class
@@ -27,7 +26,6 @@ public class PlaceDAO {
 						  .getPath();
 		
 		try {
-			
 			prop.load(new FileReader(filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -125,37 +123,36 @@ public class PlaceDAO {
 		return p;
 	}
 	
-	public int insertPlace(Connection con, Place p) throws PlaceException {
-		
+	public int insertPlace(Connection con, Place p) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
 		String sql = prop.getProperty("insertPlace");
+		
+//		insertPlace=INSERT INTO PLACE VALUES (SEQ_PNO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)
+		// 1:CNO, 2: OID, 3:PIMG, 4:PNAME, 5:PCONTENT, 6:PCALL, 7:PADDRESS, 8:PTIME, 9:PBREAKTIME
 		
 		try {
 			
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setInt(1, p.getpNo());
-			pstmt.setInt(2, p.getcNo());
-			pstmt.setString(3, p.getoId());
-			pstmt.setString(4, p.getpImg());
-			pstmt.setString(5, p.getpName());
-			pstmt.setString(6, p.getpContent());
-			pstmt.setString(7, p.getpCall());
-			pstmt.setString(8, p.getpAddress());
+			pstmt.setInt(1, p.getcNo());
+			pstmt.setString(2, p.getoId());
+			pstmt.setString(3, p.getpImg());
+			pstmt.setString(4, p.getpName());
+			pstmt.setString(5, p.getpContent());
+			pstmt.setString(6, p.getpCall());
+			pstmt.setString(7, p.getpAddress());
 			pstmt.setString(8, p.getpTime());
-			pstmt.setString(8, p.getpBreaktime());
+			pstmt.setString(9, p.getpBreaktime());
 			
 			
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println("다오입니다 : " + result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new PlaceException("DAO에러 : " + e.getMessage());
+			System.out.println("PlaceDAO에러 : pInsert도중 문제 발생함" + e.getMessage());
 		} finally {
 			close(pstmt);
 		}

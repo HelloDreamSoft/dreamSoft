@@ -47,7 +47,7 @@ public class PlaceImgInsertServlet extends HttpServlet {
 		int maxSize = 1024*1024*10;
 		
 		String root = request.getServletContext().getRealPath("/resources");
-		String savePath = root + "/placeUploadFile/desc/";
+		String savePath = root + "/placeUploadFiles/desc/";
 		
 		MultipartRequest mre = new MultipartRequest(
 										request
@@ -108,7 +108,7 @@ public class PlaceImgInsertServlet extends HttpServlet {
 			}
 			
 			PrintWriter out = response.getWriter();
-			out.print("http://localhost:8088/dream/resources/noticeUploadFiles/desc/" + renameFile);
+			out.print("http://localhost:8088/dream/resources/noticeUploadFiles/desc/" + renameFileName);
 			out.flush();
 			out.close();
 		}
