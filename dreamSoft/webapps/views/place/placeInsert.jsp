@@ -104,13 +104,10 @@
 						</tbody>
 					</table>
 
-					<div class="checkout_btn_inner float-right">
-						<a class="btn_1"
-							href="<%=request.getContextPath()%>/views/place/placeList.jsp">등록완료</a>
-						<a class="btn_1 checkout_btn_1"
-							href="<%=request.getContextPath()%>/views/place/placeList.jsp">목록으로 가기</a>
-					</div>
-					
+					<div class="checkout_btn_inner float-right" style="font-size: 18px;">
+						<button type = "reset" class="genric-btn success radius e-large">취소하기</a>
+						<button type = "submit" class="genric-btn success radius e-large">등록하기</a>
+					</div>					
 			      	<div class="fileArea" id="fileArea">
 			      		<input type="file" id="thumbnailImg1"
 			      				name="thumbnailImg1" onchange="loadImg(this, 1);" />

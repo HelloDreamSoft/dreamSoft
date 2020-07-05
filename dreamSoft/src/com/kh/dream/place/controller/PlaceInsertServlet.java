@@ -69,6 +69,7 @@ public class PlaceInsertServlet extends HttpServlet {
 		
 		// 오너 로그인이 안되니 일단 임의로 등록해놓음.
 		Owner o = (Owner)session.getAttribute("owner");
+		System.out.println("pInsert서블릿에서 owner객체 확인 : " + o);
 		String oId = o.getoId();
 		
 		
